@@ -22,5 +22,5 @@ var MEDIA = {
   pickleball:  'assets/8aa9f646c7f2b928379a2d6068abc74f.jpg',
 
   // ── Resume ───────────────────────────────────────────────────────────
-  resume:      'assets/Lindsey Nguyen Resume.docx',
+  resume:      'assets/Lindsey Nguyen Resume.pdf',
 };
