@@ -6,20 +6,32 @@
 <title>Nexus &mdash; Lindsey Nguyen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Pinyon+Script&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/case-study.css" />
+<style>
+[data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s ease;}
+[data-reveal].revealed{opacity:1;transform:none;}
+[data-reveal][data-delay="1"]{transition-delay:.15s;}
+[data-reveal][data-delay="2"]{transition-delay:.3s;}
+[data-reveal][data-delay="3"]{transition-delay:.45s;}
+[data-reveal][data-delay="4"]{transition-delay:.6s;}
+[data-scale]{transform:scale(.95);opacity:0;transition:transform .65s cubic-bezier(.4,0,.2,1),opacity .55s ease;}
+[data-scale].revealed{transform:scale(1);opacity:1;}
+.rail ol{list-style:none;padding:0;}
+.rail ol li{position:relative;}
+#cursor-follow{position:absolute;font-size:24px;pointer-events:none;top:24px;right:24px;z-index:10;line-height:1;transition:top .08s ease,left .08s ease;will-change:top,left;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25));}
+</style>
 </head>
 <body style="--accent:oklch(0.55 0.14 285);--accent-soft:oklch(0.96 0.03 285);--accent-line:oklch(0.87 0.06 285)">
 
   <header class="nav">
     <div class="wrap nav-inner">
-      <a href="Portfolio.html" class="brand" aria-label="Home">a</a>
+      <a href="Portfolio.html" class="brand" aria-label="Home">ln</a>
       <nav class="nav-links">
         <a href="Portfolio.html#work" class="active">work</a>
-        <a href="Portfolio.html#about">play</a>
         <a href="Portfolio.html#about">about</a>
+        <a href="uploads/Lindsey Nguyen Resume.docx" target="_blank" rel="noopener" class="resume-btn">resume</a>
       </nav>
-      <a href="Portfolio.html#contact" class="nav-mark" aria-label="Menu">&#10043;</a>
     </div>
   </header>
   <div class="wrap shell">
@@ -33,81 +45,102 @@
         <li><a href="#solution" data-spy>Solution</a></li>
         <li><a href="#next" data-spy>Next steps</a></li>
         <li><a href="#takeaways" data-spy>Takeaways</a></li>
-        <li><a href="#learn" data-spy>Learn more</a></li>
         <li><a href="#see-next" data-spy>See next</a></li>
       </ol>
     </aside>
     <main>
-      <div class="banner dark" style="background:linear-gradient(152deg,#6E5BE8 0%,#4F7BF0 52%,#3BA0FF 100%);">
-        <div class="wordmark">
-          <b>Nexus<span>.</span></b>
-          <em>Inspiration rooted in culture</em>
-        </div>
-        <div class="laptop"><div class="lid"><div class="scr"><small>hero shot</small></div></div><div class="base"></div></div>
-        <span class="tag-img">hero image</span>
+      <div class="banner dark" style="padding:0;overflow:hidden;background:#0d1f4a;position:relative;">
+        <img src="uploads/hero image.jpg" alt="Nexus hero" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        
       </div>
 
       <section id="context" class="titleblock">
-        <div>
+        <div data-reveal>
           <div class="award"><span class="medal">&#9733;</span> 1st Place, Visual Design &mdash; Design-a-thon</div>
           <h1>Nexus</h1>
         </div>
         <div>
-          <p class="summary">A discovery hub where artists find inspiration across cultures and traditions of art.</p>
-          <div class="tags"><span>Web App</span><span>Community</span><span>Culture</span></div>
-          <a href="#solution" class="skip"><span class="dot">&darr;</span><b>Skip to solution</b></a>
+          <p class="summary" data-reveal data-delay="1">An interactive platform that helps designers rediscover originality through culture &mdash; connecting creativity, community, and design beyond the algorithm.</p>
+          <div class="tags" data-reveal data-delay="2"><span>Web App</span><span>Community</span><span>Culture</span></div>
+          <a href="#solution" class="skip" data-reveal data-delay="3"><span class="dot">&darr;</span><b>Skip to solution</b></a>
         </div>
       </section>
 
       <div class="meta">
-        <div><span>Role</span><b>Product Designer</b></div>
-        <div><span>Duration</span><b>48-hour Design-a-thon</b></div>
-        <div><span>Tools</span><b>Figma</b></div>
+        <div data-reveal><span>Role</span><b>Product Designer</b></div>
+        <div data-reveal data-delay="1"><span>Duration</span><b>48-hour Design-a-thon</b></div>
+        <div data-reveal data-delay="2"><span>Tools</span><b>Figma</b></div>
       </div>
 
       <div class="body">
         <section class="sec">
-          <p class="sec-eyebrow">Context</p>
-          <p><em style="color:var(--faint)">[Draft &mdash; full copy coming]</em> Built during a design-a-thon to face the elephant in the room &mdash; <strong>how AI is reshaping creative work</strong> &mdash; by celebrating human, cultural craft. Nexus is a Pinterest-style hub for discovering art across cultures and traditions.</p>
+          <p class="sec-eyebrow" data-reveal>Context</p>
+          <p data-reveal data-delay="1">We&rsquo;re creating faster than ever, but everything is starting to look the same. <strong>A 2024 study found that as AI boosted productivity by 25%, originality in design dropped just as fast.</strong></p>
+          <p>Designs began to merge: the same compositions, the same color palettes, the same ideas repeated in slightly different forms. Researchers call this a &ldquo;digital monoculture,&rdquo; where bias and data repetition quietly reshape creativity.</p>
+          <p><strong>If this continues, design risks reflecting algorithms and trends more than it reflects people, culture, or stories.</strong></p>
         </section>
         <section id="began" class="sec">
-          <p class="sec-eyebrow">Where we began</p>
-          <h2>As AI floods the feed, where does cultural craft go?</h2>
-          <p>We wanted a space that points artists back to roots &mdash; the traditions, techniques, and cultures behind the work &mdash; instead of an endless stream of synthetic sameness.</p>
-          <div class="imgph wide"><small>concept &middot; framing the problem</small></div>
+          <p class="sec-eyebrow" data-reveal>Where we began</p>
+          <h2 data-reveal data-delay="1">How might we help designers recognize their individuality, and design from culture instead of conformity?</h2>
+          <p>We started by exploring inspiration, community, culture, and creativity. Our goal: help designers understand the meaning behind their choices, instead of replicating what already exists.</p>
+          <p>When we took on the prompt &ldquo;Designing Beyond Our Lifetime,&rdquo; we couldn&rsquo;t ignore AI. It makes design faster and more accessible, but it also risks erasing originality. We didn&rsquo;t want to reject AI &mdash; we wanted to redefine its role. <strong>AI should support exploration, not take over creativity.</strong></p>
+          <p>We focused on emerging designers and creatives who want to think independently and find originality beyond AI-generated trends.</p>
+          <img src="uploads/xX1a9xw3hYADsx8eECKvgkUGQb8.png" alt="Current vs Future Scenario diagram" data-reveal data-delay="2" style="width:100%;border-radius:9px;margin-top:28px;display:block;" />
         </section>
         <section id="found" class="sec">
-          <p class="sec-eyebrow">What we found</p>
-          <h2>Discovery feels richer when it&rsquo;s <em>rooted</em>, not random.</h2>
-          <p>Inspiration meant more when it carried context: where a style came from, who made it, what it represents. People wanted to explore <strong>by culture and tradition</strong>, not just by aesthetic.</p>
-          <div class="pull"><p>&ldquo;Add a judge or user quote here.&rdquo;</p></div>
+          <p class="sec-eyebrow" data-reveal>What we found</p>
+          <h2 data-reveal data-delay="1">What keeps the spark alive &mdash; the X factor that makes design human?</h2>
+          <p>We studied how designers currently explore creative resources. That pushed us past the design process itself, into its ripple effects: how one designer&rsquo;s choices today might shape someone else&rsquo;s work a hundred years from now.</p>
+          <p>We looked at what makes creative expression human: personal anecdotes, quirks, personality, lived experience.</p>
+          <div class="pull" data-reveal data-delay="2"><p>&ldquo;It was very thoughtful to think of a way that AI could supplement not augment human creativity. So often, people use AI as an easy button, but your concept allows designers to actually express themselves and do some introspection as they grow and develop.&rdquo;</p><small>&mdash; Design-a-thon Judge</small></div>
         </section>
         <section id="solution" class="sec">
-          <p class="sec-eyebrow">Solution</p>
-          <h2>A visual hub, organized by culture and craft.</h2>
-          <p>Nexus is a richly visual, browsable board of inspiration grouped by culture, region, and tradition &mdash; the kind of place an artist can fall into and come out knowing something. The visual design is what won the room.</p>
-          <div class="two-up"><div class="imgph"><small>discovery board</small></div><div class="imgph"><small>culture detail</small></div></div>
-          <div class="imgph wide"><small>solution walkthrough</small></div>
+          <p class="sec-eyebrow" data-reveal>Solution</p>
+          <h2 data-reveal data-delay="1">If AI shapes the present, culture preserves the future.</h2>
+          <p>We sketched four user flows that let designers tap into the creative legacy of different communities &mdash; either by exploring freely or searching for specific interests. Users can showcase their own design stories, while AI helps surface ideologies and cultural values they hadn&rsquo;t considered.</p>
+          <p>We merged these flows into one coherent experience, then translated our sketches into medium fidelity wireframes: exploring works, learning the cultural values behind them, and seeing how their own creative voice is shaped by ideology. <strong>Helping designers trace the lineage of design means teaching them to learn from ideologies, not just replicate aesthetics.</strong></p>
+
+          <div style="margin-top:32px;display:flex;flex-direction:column;gap:32px;">
+            <div data-reveal>
+              <p style="font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint,#9A968F);margin:0 0 10px;font-family:ui-monospace,Menlo,monospace;">01 &mdash; Rediscover inspiration beyond the algorithm</p>
+              <div style="border-radius:9px;overflow:hidden;background:#000;aspect-ratio:16/9;" data-scale>
+                <video src="uploads/Discovery board.mp4" controls autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+              </div>
+            </div>
+            <div data-reveal>
+              <p style="font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint,#9A968F);margin:0 0 10px;font-family:ui-monospace,Menlo,monospace;">02 &mdash; See how your creative identity connects to broader cultural narratives</p>
+              <div style="border-radius:9px;overflow:hidden;background:#000;aspect-ratio:16/9;" data-scale>
+                <video src="uploads/user's own idea inspo.mp4" controls autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+              </div>
+            </div>
+            <div data-reveal>
+              <p style="font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--faint,#9A968F);margin:0 0 10px;font-family:ui-monospace,Menlo,monospace;">03 &mdash; Add your story to the collective creative tapestry</p>
+              <div style="border-radius:9px;overflow:hidden;background:#000;aspect-ratio:16/9;" data-scale>
+                <video src="uploads/diary note.mp4" controls autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+              </div>
+            </div>
+          </div>
         </section>
         <section id="next" class="sec">
-          <p class="sec-eyebrow">Next steps</p>
-          <p><em style="color:var(--faint)">[Draft &mdash; to be written]</em> Where Nexus could go beyond the competition.</p>
+          <p class="sec-eyebrow" data-reveal>Next steps</p>
+          <p>One judge noted they&rsquo;d love to see deeper AI&ndash;human interaction &mdash; rather than a user simply annotating inspiration with images, an AI could prompt them with questions, accepting voice or text as input. That kind of reflective dialogue feels like the natural next layer: an AI that asks <em>why</em> something resonates, not just catalogues what you saved. Nexus could grow from a discovery board into a genuine creative journal.</p>
+          <p>Over the next decades, AI systems will keep learning from creative work. <strong>Nexus helps preserve the cultural context behind that work, so the perspective, values, and authenticity stay intact for whatever technology learns from them next.</strong> In fifty or a hundred years, the datasets that train creative systems could carry these voices forward &mdash; teaching technology to remember not just what we made, but why we made it.</p>
         </section>
         <section id="takeaways" class="sec">
-          <p class="sec-eyebrow">Takeaways</p>
+          <p class="sec-eyebrow" data-reveal>Takeaways</p>
 
-          <div class="stats"><div><b>#1</b><span>Visual Design</span></div><div><b>48 hrs</b><span>concept to demo</span></div><div><b>1 hub</b><span>culture-first discovery</span></div></div>
-          <p><em style="color:var(--faint)">[Draft &mdash; reflection coming]</em> Winning visual design under a 48-hour clock taught me a lot about decisive craft.</p>
-        </section>
-        <section id="learn" class="sec">
-          <p class="sec-eyebrow">Learn more</p>
-
-          <div class="links"><a href="#"><span>Read the full process write-up</span><span class="arr">&rarr;</span></a><a href="#"><span>View the interactive prototype</span><span class="arr">&rarr;</span></a><a href="#"><span>Figma file &amp; component library</span><span class="arr">&rarr;</span></a></div>
+          <div class="stats" data-reveal data-delay="1"><div><b>#1</b><span>Visual Design</span></div><div><b>48 hrs</b><span>concept to demo</span></div><div><b>1 hub</b><span>culture-first discovery</span></div></div>
+          <figure data-reveal data-delay="2" style="margin:28px 0;border-radius:9px;overflow:hidden;">
+            <img src="uploads/winner photo.jpg" alt="Nexus team receiving Excellence in Visual Design award" style="width:100%;display:block;object-fit:cover;" />
+            <figcaption style="padding:10px 14px;font-size:12px;color:var(--faint,#9A968F);">Excellence in Visual Design &mdash; 2025 Astropocalypse Design-a-thon</figcaption>
+          </figure>
+          <p>By encouraging cultural exploration and self-reflection, Nexus reduces reliance on AI-generated trends and re-centers human intent in the creative process. This helps designers think critically, create consciously, and express their individuality more effectively.</p>
+          <p>As people become more informed creatives, shared cultural knowledge stays alive instead of getting lost in trends &mdash; making room for more representation in design overall. Winning visual design under a 48-hour clock taught me a lot about decisive craft, and about what happens when a team cares deeply about the <em>why</em> behind a prompt.</p>
         </section>
         <section id="see-next" class="sec seenext">
           <p class="sec-eyebrow">See next</p>
           <a href="emerson.html">
-            <div class="thumb" style="background:linear-gradient(155deg,#F1EFEA,#DCDAD3 120%);"><div class="laptop"><div class="lid"><div class="scr"></div></div><div class="base"></div></div></div>
+            <div class="thumb"><video src="uploads/emerson case study.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
             <div class="cap">
               <h3>DVA</h3>
               <span class="role">Product Design Intern</span>
@@ -122,31 +155,69 @@
     <div class="wrap foot-inner">
       <a href="Portfolio.html#contact" class="big">Let&rsquo;s build something good. &rarr;</a>
       <nav class="socials">
-        <a href="#">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/lindseythuytramnguyen" target="_blank" rel="noopener">LinkedIn</a>
         <a href="#">Read.cv</a>
-        <a href="#">GitHub</a>
+        <a href="uploads/Lindsey Nguyen Resume.docx" target="_blank" rel="noopener">Resume</a>
         <a href="#">Email</a>
       </nav>
     </div>
   </footer>
 
+  <script src="assets/case-study-fx.js"></script>
+
+  <!-- Rocket back to top -->
+  <div id="rocket-wrap" style="
+    position:fixed;right:28px;bottom:36px;
+    display:flex;align-items:center;gap:10px;
+    opacity:0;pointer-events:none;
+    transition:opacity .3s ease;
+    z-index:800;
+  ">
+    <span style="
+      font-size:12px;color:#1B1A18;background:#fff;
+      border:1px solid #E7E4DE;border-radius:20px;
+      padding:6px 12px;white-space:nowrap;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+      font-family:ui-monospace,Menlo,monospace;letter-spacing:.02em;
+    ">Want to reach the top?</span>
+    <button id="rocket-btn" aria-label="Back to top" onclick="rocketLaunch()" style="
+      width:48px;height:48px;border-radius:50%;
+      background:#1B1A18;border:none;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;box-shadow:0 4px 16px rgba(0,0,0,.18);
+      transition:transform .2s ease;flex-shrink:0;
+    ">🚀</button>
+  </div>
+  <style>
+    @keyframes rocketFly {
+      0%   { transform: translateY(0) rotate(-45deg) scale(1); opacity:1; }
+      60%  { transform: translateY(-120px) rotate(-45deg) scale(1.15); opacity:1; }
+      100% { transform: translateY(-220px) rotate(-45deg) scale(0.6); opacity:0; }
+    }
+    #rocket-btn.launch { animation: rocketFly .7s cubic-bezier(.4,0,.2,1) forwards; }
+    #rocket-btn:hover  { transform: translateY(-3px) rotate(-45deg); }
+  </style>
   <script>
     (function(){
-      var links = Array.prototype.slice.call(document.querySelectorAll('.rail a[data-spy]'));
-      var ids = links.map(function(a){ return a.getAttribute('href').slice(1); });
-      var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
-      function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#'+id); }); }
-      setActive('context');
-      if(!('IntersectionObserver' in window)) return;
-      var visible = {};
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(en){ visible[en.target.id] = en.isIntersecting ? en.intersectionRatio : 0; });
-        var best=null, bestR=-1;
-        ids.forEach(function(id){ var r=visible[id]||0; if(r>bestR){ bestR=r; best=id; } });
-        if(best && bestR>0) setActive(best);
-      }, { rootMargin:'-30% 0px -55% 0px', threshold:[0,.25,.5,1] });
-      sections.forEach(function(s){ io.observe(s); });
+      var btn = document.getElementById('rocket-btn');
+      var wrap = document.getElementById('rocket-wrap');
+      window.addEventListener('scroll', function(){
+        var show = window.scrollY > 300;
+        wrap.style.opacity = show ? '1' : '0';
+        wrap.style.pointerEvents = show ? 'auto' : 'none';
+      });
+      window.rocketLaunch = function(){
+        btn.classList.add('launch');
+        setTimeout(function(){
+          window.scrollTo({ top:0, behavior:'smooth' });
+        }, 300);
+        setTimeout(function(){
+          btn.classList.remove('launch');
+          btn.style.transform = '';
+        }, 900);
+      };
     })();
   </script>
+
 </body>
 </html>

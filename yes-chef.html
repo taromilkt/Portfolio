@@ -6,147 +6,383 @@
 <title>Yes, Chef &mdash; Lindsey Nguyen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Pinyon+Script&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/case-study.css" />
+<style>
+
+/* ── Scroll reveal ── */
+[data-reveal]{
+  opacity:0;transform:translateY(22px);
+  transition:opacity .5s ease,transform .5s ease;
+}
+[data-reveal].revealed{ opacity:1;transform:none; }
+[data-reveal][data-delay="1"]{ transition-delay:.15s; }
+[data-reveal][data-delay="2"]{ transition-delay:.3s; }
+[data-reveal][data-delay="3"]{ transition-delay:.45s; }
+[data-reveal][data-delay="4"]{ transition-delay:.6s; }
+
+/* ── Scale-in for video containers ── */
+[data-scale]{
+  transform:scale(.95);opacity:0;
+  transition:transform .65s cubic-bezier(.4,0,.2,1),opacity .55s ease;
+}
+[data-scale].revealed{ transform:scale(1);opacity:1; }
+
+/* ── Nav dot markers ── */
+.rail ol{ list-style:none; padding:0; }
+.rail ol li{ position:relative; }
+
+/* ── Cursor follower ── */
+#cursor-chef{
+  display:none;position:absolute;font-size:24px;pointer-events:none;
+  top:24px;right:24px;z-index:10;line-height:1;
+  transition:top .08s ease,left .08s ease;
+  will-change:top,left;
+  filter:drop-shadow(0 2px 6px rgba(0,0,0,.18));
+}
+.banner{ position:relative; }
+
+/* ── Modal overlay ── */
+#feat-modal{
+  display:none;position:fixed;inset:0;z-index:950;
+  background:rgba(15,14,13,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;padding:24px;
+}
+#feat-modal.open{ display:flex; }
+#feat-modal-box{
+  background:#FBFBFA;border-radius:16px;padding:40px 36px;
+  max-width:480px;width:100%;position:relative;
+  box-shadow:0 32px 80px rgba(0,0,0,.22);
+  animation:modalPop .35s cubic-bezier(.4,0,.2,1);
+}
+@keyframes modalPop{
+  from{opacity:0;transform:translateY(18px) scale(.97)}
+  to{opacity:1;transform:none}
+}
+#feat-modal-close{
+  position:absolute;top:16px;right:18px;background:none;border:none;
+  font-size:20px;cursor:pointer;color:var(--muted);line-height:1;
+  transition:color .15s;padding:4px;
+}
+#feat-modal-close:hover{ color:var(--ink); }
+.feat-trigger{
+  cursor:pointer;display:inline-block;
+}
+.feat-trigger:hover{
+  text-decoration:underline;text-underline-offset:3px;
+}
+
+/* ── Stat counters ── */
+.stat-num{ display:inline; font-variant-numeric:tabular-nums; }
+
+</style>
 </head>
 <body style="--accent:oklch(0.58 0.09 50);--accent-soft:oklch(0.95 0.025 50);--accent-line:oklch(0.85 0.045 50)">
 
   <header class="nav">
     <div class="wrap nav-inner">
-      <a href="Portfolio.html" class="brand" aria-label="Home">a</a>
+      <a href="Portfolio.html" class="brand" aria-label="Home">ln</a>
       <nav class="nav-links">
         <a href="Portfolio.html#work" class="active">work</a>
-        <a href="Portfolio.html#about">play</a>
         <a href="Portfolio.html#about">about</a>
+        <a href="uploads/Lindsey Nguyen Resume.docx" target="_blank" rel="noopener" class="resume-btn">resume</a>
       </nav>
-      <a href="Portfolio.html#contact" class="nav-mark" aria-label="Menu">&#10043;</a>
     </div>
   </header>
+
   <div class="wrap shell">
 
     <aside class="rail">
       <a href="Portfolio.html#work" class="back">&larr; All work</a>
       <ol>
         <li><a href="#context" data-spy>Context</a></li>
-        <li><a href="#began" data-spy>Where we began</a></li>
-        <li><a href="#found" data-spy>What we found</a></li>
+        <li><a href="#problem" data-spy>The problem</a></li>
+        <li><a href="#research" data-spy>Research</a></li>
         <li><a href="#solution" data-spy>Solution</a></li>
-        <li><a href="#next" data-spy>Next steps</a></li>
+        <li><a href="#challenges" data-spy>Challenges</a></li>
         <li><a href="#takeaways" data-spy>Takeaways</a></li>
-        <li><a href="#learn" data-spy>Learn more</a></li>
         <li><a href="#see-next" data-spy>See next</a></li>
       </ol>
     </aside>
+
     <main>
-      <div class="banner" style="background:linear-gradient(152deg,#E7D9C2 0%,#DCC8A8 50%,#CDB590 100%);">
-        <div class="wordmark">
-          <b>Yes, Chef<span>.</span></b>
-          <em>Cook more, waste less, spend less</em>
-        </div>
-        <div class="device"><div class="scr"><small>hero shot</small></div></div>
-        <span class="tag-img">hero image</span>
+
+      <!-- HERO -->
+      <div class="banner" style="padding:0;overflow:hidden;background:#EDE5D4;">
+        <img src="uploads/FINAL PRESENTATION Yes, Chef.pdf.png" alt="Yes, Chef hero" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        
       </div>
 
+      <!-- TITLE -->
       <section id="context" class="titleblock">
-        <div>
+        <div data-reveal>
           <div class="award">A cooking app &mdash; designed with a team of five</div>
           <h1>Yes, Chef</h1>
         </div>
         <div>
-          <p class="summary">A cooking app that helps you save money, cut grocery waste, and actually learn to cook.</p>
-          <div class="tags"><span>Mobile</span><span>Social</span><span>Food</span></div>
-          <a href="#solution" class="skip"><span class="dot">&darr;</span><b>Skip to solution</b></a>
+          <p class="summary" data-reveal data-delay="1">A pantry-aware cooking app that cuts food waste, speeds up meals, and keeps people motivated through step-by-step guidance and social co-cooking.</p>
+          <div class="tags" data-reveal data-delay="2"><span>Mobile</span><span>Social</span><span>Food</span></div>
+          <a href="#solution" class="skip" data-reveal data-delay="3"><span class="dot">&darr;</span><b>Skip to solution</b></a>
         </div>
       </section>
 
       <div class="meta">
-        <div><span>Role</span><b>Product Designer (team of 5)</b></div>
-        <div><span>Duration</span><b>2025</b></div>
-        <div><span>Tools</span><b>Figma, FigJam</b></div>
+        <div data-reveal><span>Role</span><b>Product Designer (team of 5)</b></div>
+        <div data-reveal data-delay="1"><span>Duration</span><b>2025</b></div>
+        <div data-reveal data-delay="2"><span>Tools</span><b>Figma, FigJam</b></div>
       </div>
 
       <div class="body">
-        <section class="sec">
-          <p class="sec-eyebrow">Context</p>
-          <p><em style="color:var(--faint)">[Draft &mdash; full copy coming]</em> A team of five designers building a cooking app around three goals: <strong>bringing people together around food, saving money, and reducing grocery waste</strong> &mdash; while helping people genuinely learn to cook.</p>
+
+        <!-- CONTEXT -->
+        <section id="context" class="sec">
+          <p class="sec-eyebrow" data-reveal>Context</p>
+          <p data-reveal data-delay="1"><span style="color:#000000">Yes, Chef is a pantry-aware cooking app built to cut food waste, speed up meals, and keep people motivated. I worked as a <strong style="font-weight:600">UX Designer on a team of five</strong>, collaborating across research, usability testing, and design from concept through final prototype.</span></p>
         </section>
-        <section id="began" class="sec">
-          <p class="sec-eyebrow">Where we began</p>
-          <h2>People want to cook more, but food and money keep slipping away.</h2>
-          <p>Groceries go bad, budgets blow up, and recipes feel intimidating. We started by mapping the real friction between &ldquo;I should cook&rdquo; and actually getting a meal on the table.</p>
-          <div class="imgph wide"><small>research &middot; the home-cooking journey</small></div>
+
+        <!-- PROBLEM -->
+        <section id="problem" class="sec">
+          <p class="sec-eyebrow" data-reveal>The problem</p>
+          <h2 data-reveal data-delay="1">Young adults want to cook more &mdash; but it feels like <em>too much work</em> to figure out.</h2>
+          <p data-reveal data-delay="2">Busy schedules, low kitchen confidence, and recipes, groceries, and plans scattered across different apps turn cooking into a chore. <strong>Only 33% of Gen Z feels skilled in the kitchen</strong>, and the result is wasted food, last-minute takeout, and the same cycle repeating every week.</p>
         </section>
-        <section id="found" class="sec">
-          <p class="sec-eyebrow">What we found</p>
-          <h2>Cooking sticks when it&rsquo;s <em>social</em> and low-stakes.</h2>
-          <p>People cooked more when it felt shared and forgiving rather than precise and lonely. Saving money and cutting waste turned out to be powerful motivators &mdash; if we made the payoff visible.</p>
-          <div class="pull"><p>&ldquo;Add full quote from research here.&rdquo;</p></div>
+
+        <!-- RESEARCH -->
+        <section id="research" class="sec">
+          <p class="sec-eyebrow" data-reveal>Research</p>
+          <h2 data-reveal data-delay="1">Confidence, not skill, was the <em>real divide.</em></h2>
+          <p data-reveal data-delay="2">We surveyed <strong><span class="stat-num" data-count="51">51</span> young cooks</strong> and interviewed <strong><span class="stat-num" data-count="10">10</span> more</strong>, digging into how they decide what to cook, why they give up on new recipes, and what would make following one easier.</p>
+          <p data-reveal data-delay="3">Seasoned cooks experimented freely and shopped less often. Novice cooks stuck to the basics and relied on memory to track what was even in their kitchen. Both groups wanted the same thing underneath: <strong>faster, more flexible meals</strong> that cut down on waste and decision fatigue.</p>
+          <img src="uploads/pasted-1782339040561-0.png" alt="Key Takeaways from the Research" data-reveal data-delay="4" style="width:100%;border-radius:9px;margin-top:28px;display:block;" />
         </section>
+
+        <!-- SOLUTION -->
         <section id="solution" class="sec">
-          <p class="sec-eyebrow">Solution</p>
-          <h2>Guidance, savings, and a community in one app.</h2>
-          <p>The app pairs step-by-step recipe guidance with a pantry that tracks what you have, nudges you before food expires, and shows the money you&rsquo;re saving &mdash; all wrapped in a social feed that makes cooking feel shared.</p>
-          <div class="two-up"><div class="imgph"><small>recipe guidance</small></div><div class="imgph"><small>pantry + savings</small></div></div>
-          <div class="imgph wide"><small>solution walkthrough</small></div>
+          <p class="sec-eyebrow" data-reveal>Solution</p>
+          <h2 data-reveal data-delay="1">Young adults don&rsquo;t need more recipes. They need <em>support.</em></h2>
+          <p data-reveal data-delay="2">Yes, Chef removes the mental load of cooking: it <strong>recommends meals from what&rsquo;s already at home</strong>, guides users through each step, and <strong>tracks groceries through receipt scans</strong>. A private space to document progress turns cooking into a habit, not a one-off effort.</p>
+
+          <div style="display:flex;flex-direction:column;gap:56px;margin-top:40px;">
+
+            <div data-reveal>
+              <p style="font-size:12px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px;">01</p>
+              <b class="feat-trigger" style="font-size:17px;display:inline-block;margin-bottom:8px;" title="Click to learn more">Guided Onboarding <span style="font-size:13px;opacity:.5;">↗</span></b>
+              <p style="font-size:15px;line-height:1.65;margin:0 0 18px;color:#3a3937;">A short questionnaire captures goals, confidence, and experience &mdash; so recommendations are tailored from the very first use.</p>
+              <div style="border-radius:10px;overflow:hidden;background:#000;aspect-ratio:16/9;" data-scale>
+                <video src="uploads/onboarding.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+              </div>
+            </div>
+
+            <div data-reveal>
+              <p style="font-size:12px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px;">02</p>
+              <b style="font-size:17px;display:block;margin-bottom:8px;">Smart Pantry</b>
+              <p style="font-size:15px;line-height:1.65;margin:0 0 18px;color:#3a3937;">Receipt uploads turn grocery purchases into a live pantry, so suggestions always match what&rsquo;s already at home.</p>
+              <div style="border-radius:10px;overflow:hidden;background:#000;aspect-ratio:16/9;" data-scale>
+                <video src="uploads/device-mockup_2x_postspark_2026-06-24_16-40-01.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+              </div>
+            </div>
+
+            <div data-reveal>
+              <p style="font-size:12px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px;">03</p>
+              <b style="font-size:17px;display:block;margin-bottom:8px;">Cook with Confidence</b>
+              <p style="font-size:15px;line-height:1.65;margin:0 0 18px;color:#3a3937;">Step-by-step recipes with videos and timers support in-the-moment cooking and build confidence over time.</p>
+              <div style="border-radius:10px;overflow:hidden;background:#000;aspect-ratio:16/9;" data-scale>
+                <video src="uploads/cooking with confidence.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+              </div>
+            </div>
+
+            <div data-reveal>
+              <p style="font-size:12px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px;">04</p>
+              <b style="font-size:17px;display:block;margin-bottom:8px;">Community &amp; Motivation</b>
+              <p style="font-size:15px;line-height:1.65;margin:0 0 18px;color:#3a3937;">Users share completed meals and rate recipes, building consistency and exposure to new ideas without performance pressure.</p>
+              <div style="border-radius:10px;overflow:hidden;background:#000;aspect-ratio:16/9;" data-scale>
+                <video src="uploads/community and motivation.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+              </div>
+            </div>
+
+          </div>
         </section>
-        <section id="next" class="sec">
-          <p class="sec-eyebrow">Next steps</p>
-          <p><em style="color:var(--faint)">[Draft &mdash; to be written]</em> What we&rsquo;d explore next.</p>
+
+        <!-- CHALLENGES -->
+        <section id="challenges" class="sec">
+          <p class="sec-eyebrow" data-reveal>Challenges</p>
+          <h2 data-reveal data-delay="1">The hardest thing we designed was what we <em>left out.</em></h2>
+          <p data-reveal data-delay="2">The biggest UX challenge was <strong>avoiding cognitive overload</strong>. It would have been easy to pile on features until the app felt heavy instead of supportive.</p>
+          <p data-reveal data-delay="3">We narrowed the product to <strong>one core flow</strong>, and only added features that reduced friction &mdash; never complexity.</p>
         </section>
+
+        <!-- TAKEAWAYS -->
         <section id="takeaways" class="sec">
-          <p class="sec-eyebrow">Takeaways</p>
-
-          <div class="stats"><div><b>5</b><span>designers, one shared vision</span></div><div><b>3</b><span>goals: social, savings, less waste</span></div><div><b>1 app</b><span>from pantry to plate</span></div></div>
-          <p><em style="color:var(--faint)">[Draft &mdash; reflection coming]</em> What this project taught me.</p>
+          <p class="sec-eyebrow" data-reveal>Takeaways</p>
+          <div class="stats" data-reveal data-delay="1">
+            <div><b><span class="stat-num" data-count="5"><b style="color: #1B1A18">5</b></span></b><span>designers, one shared vision</span></div>
+            <div><b><span class="stat-num" data-count="3"><b style="color: #1B1A18">3</b></span></b><span>goals: social, savings, less waste</span></div>
+            <div><b>1 flow</b><span>core experience, no clutter</span></div>
+          </div>
+          <p data-reveal data-delay="2">Everyone shares the same core need, even when the details differ by skill level. Designing for novice and seasoned cooks meant <strong>layering in support without making the interface feel complicated</strong>.</p>
+          <p data-reveal data-delay="3">We also learned that people skim, not study. <strong>Clear, scannable content beat dense detail every time.</strong></p>
         </section>
-        <section id="learn" class="sec">
-          <p class="sec-eyebrow">Learn more</p>
 
-          <div class="links"><a href="#"><span>Read the full process write-up</span><span class="arr">&rarr;</span></a><a href="#"><span>View the interactive prototype</span><span class="arr">&rarr;</span></a><a href="#"><span>Figma file &amp; component library</span><span class="arr">&rarr;</span></a></div>
-        </section>
+        <!-- SEE NEXT -->
         <section id="see-next" class="sec seenext">
           <p class="sec-eyebrow">See next</p>
           <a href="nexus.html">
-            <div class="thumb" style="background:linear-gradient(155deg,#3BA0FF,#0F79E8);"><div class="laptop"><div class="lid"><div class="scr"></div></div><div class="base"></div></div></div>
+            <div class="thumb"><video src="uploads/user's own idea inspo.mp4" autoplay loop muted playsinline style="width:100%;height:300px;object-fit:cover;display:block;"></video></div>
             <div class="cap">
               <h3>Nexus</h3>
               <span class="role">Product Designer</span>
             </div>
           </a>
         </section>
+
       </div>
     </main>
+  </div>
+
+  <!-- FEATURE MODAL (Guided Onboarding detail) -->
+  <div id="feat-modal" role="dialog" aria-modal="true" aria-label="Guided Onboarding detail">
+    <div id="feat-modal-box">
+      <button id="feat-modal-close" aria-label="Close">&times;</button>
+      <p style="font-size:11px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.07em;text-transform:uppercase;color:var(--accent);margin:0 0 12px;">Feature detail &mdash; 01</p>
+      <h3 style="font-family:var(--serif);font-size:clamp(18px,1.5vw,22px);margin:0 0 16px;font-weight:500;font-style:italic;">Guided Onboarding</h3>
+      <p style="font-size:15px;line-height:1.7;color:#3a3937;margin:0 0 16px;">The onboarding captures three things: your cooking confidence, your weekly goals, and any dietary needs. It&rsquo;s designed as a conversation, not a form. The app adapts its recipe suggestions, difficulty level, and portion guides from day one based on your answers.</p>
+      <p style="font-size:13px;color:var(--faint);margin:0;font-style:italic;border-top:1px solid var(--line);padding-top:14px;">No account required to start &mdash; the profile builds passively as you cook.</p>
+    </div>
   </div>
 
   <footer class="foot">
     <div class="wrap foot-inner">
       <a href="Portfolio.html#contact" class="big">Let&rsquo;s build something good. &rarr;</a>
       <nav class="socials">
-        <a href="#">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/lindseythuytramnguyen" target="_blank" rel="noopener">LinkedIn</a>
         <a href="#">Read.cv</a>
-        <a href="#">GitHub</a>
+        <a href="uploads/Lindsey Nguyen Resume.docx" target="_blank" rel="noopener">Resume</a>
         <a href="#">Email</a>
       </nav>
     </div>
   </footer>
 
+  <!-- Back to top -->
+  <div id="rocket-wrap" style="position:fixed;right:28px;bottom:36px;display:flex;align-items:center;gap:10px;opacity:0;pointer-events:none;transition:opacity .3s ease;z-index:800;">
+    <span style="font-size:12px;color:#1B1A18;background:#fff;border:1px solid #E7E4DE;border-radius:20px;padding:6px 12px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.08);font-family:ui-monospace,Menlo,monospace;letter-spacing:.02em;">Back to top</span>
+    <button id="rocket-btn" aria-label="Back to top" onclick="rocketLaunch()" style="width:48px;height:48px;border-radius:50%;background:#1B1A18;border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:22px;box-shadow:0 4px 16px rgba(0,0,0,.18);transition:transform .2s ease;flex-shrink:0;">🚀</button>
+  </div>
+  <style>
+    @keyframes rocketFly{
+      0%  { transform:translateY(0) rotate(-45deg) scale(1);opacity:1; }
+      60% { transform:translateY(-120px) rotate(-45deg) scale(1.15);opacity:1; }
+      100%{ transform:translateY(-220px) rotate(-45deg) scale(0.6);opacity:0; }
+    }
+    #rocket-btn.launch{ animation:rocketFly .7s cubic-bezier(.4,0,.2,1) forwards; }
+    #rocket-btn:hover { transform:translateY(-3px) rotate(-45deg); }
+  </style>
+
   <script>
-    (function(){
-      var links = Array.prototype.slice.call(document.querySelectorAll('.rail a[data-spy]'));
-      var ids = links.map(function(a){ return a.getAttribute('href').slice(1); });
-      var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
-      function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#'+id); }); }
-      setActive('context');
-      if(!('IntersectionObserver' in window)) return;
-      var visible = {};
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(en){ visible[en.target.id] = en.isIntersecting ? en.intersectionRatio : 0; });
-        var best=null, bestR=-1;
-        ids.forEach(function(id){ var r=visible[id]||0; if(r>bestR){ bestR=r; best=id; } });
-        if(best && bestR>0) setActive(best);
-      }, { rootMargin:'-30% 0px -55% 0px', threshold:[0,.25,.5,1] });
-      sections.forEach(function(s){ io.observe(s); });
-    })();
+  (function(){
+
+    /* ── 1. Scroll reveals ── */
+    var revealEls  = Array.prototype.slice.call(document.querySelectorAll('[data-reveal]'));
+    var scaleEls   = Array.prototype.slice.call(document.querySelectorAll('[data-scale]'));
+
+    var revealObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          en.target.classList.add('revealed');
+          var sec = en.target.closest && en.target.closest('.sec');
+          if(sec) sec.classList.add('sec-revealed');
+          revealObs.unobserve(en.target);
+        }
+      });
+    },{ rootMargin:'0px 0px -60px 0px', threshold:0.08 });
+
+    revealEls.concat(scaleEls).forEach(function(el){ revealObs.observe(el); });
+
+    /* ── 2. Sticky nav + dot highlights ── */
+    var links    = Array.prototype.slice.call(document.querySelectorAll('.rail a[data-spy]'));
+    var ids      = links.map(function(a){ return a.getAttribute('href').slice(1); });
+    var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+    function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href')==='#'+id); }); }
+    setActive('context');
+    var visible = {};
+    var navObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ visible[en.target.id] = en.isIntersecting ? en.intersectionRatio : 0; });
+      var best=null, bestR=-1;
+      ids.forEach(function(id){ var r=visible[id]||0; if(r>bestR){bestR=r;best=id;} });
+      if(best && bestR>0) setActive(best);
+    },{ rootMargin:'-25% 0px -55% 0px', threshold:[0,.25,.5,1] });
+    sections.forEach(function(s){ navObs.observe(s); });
+
+    /* ── 3. Cursor follower in hero ── */
+    var banner = document.querySelector('.banner');
+    var chef   = document.getElementById('cursor-chef');
+    if(banner && chef){
+      banner.addEventListener('mousemove', function(e){
+        var r = banner.getBoundingClientRect();
+        chef.style.top  = (e.clientY - r.top  - 12) + 'px';
+        chef.style.left = (e.clientX - r.left - 12) + 'px';
+        chef.style.right = 'auto';
+      });
+      banner.addEventListener('mouseleave', function(){
+        chef.style.top   = '24px';
+        chef.style.left  = 'auto';
+        chef.style.right = '24px';
+      });
+    }
+
+    /* ── 4. Animated stat counters ── */
+    var counters = document.querySelectorAll('[data-count]');
+    var countObs = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(!en.isIntersecting) return;
+        var el = en.target;
+        var target = parseInt(el.getAttribute('data-count'), 10);
+        var startTime = null, dur = 1100;
+        (function step(ts){
+          if(!startTime) startTime = ts;
+          var prog = Math.min((ts - startTime)/dur, 1);
+          var ease = 1 - Math.pow(1 - prog, 3);
+          el.textContent = Math.round(target * ease);
+          if(prog < 1) requestAnimationFrame(step);
+          else el.textContent = target;
+        })(performance.now());
+        countObs.unobserve(el);
+      });
+    },{ threshold:0.5 });
+    counters.forEach(function(el){ countObs.observe(el); });
+
+    /* ── 5. Feature modal (Guided Onboarding) ── */
+    var modal      = document.getElementById('feat-modal');
+    var modalClose = document.getElementById('feat-modal-close');
+    document.querySelectorAll('.feat-trigger').forEach(function(el){
+      el.addEventListener('click', function(){
+        modal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    });
+    function closeModal(){
+      modal.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    if(modalClose) modalClose.addEventListener('click', closeModal);
+    if(modal) modal.addEventListener('click', function(e){ if(e.target===modal) closeModal(); });
+    document.addEventListener('keydown', function(e){ if(e.key==='Escape') closeModal(); });
+
+    /* ── 6. Back-to-top ── */
+    var wrap = document.getElementById('rocket-wrap');
+    window.addEventListener('scroll', function(){
+      var show = window.scrollY > 300;
+      wrap.style.opacity       = show ? '1' : '0';
+      wrap.style.pointerEvents = show ? 'auto' : 'none';
+    });
+    window.rocketLaunch = function(){
+      var btn = document.getElementById('rocket-btn');
+      btn.classList.add('launch');
+      setTimeout(function(){ window.scrollTo({top:0,behavior:'smooth'}); }, 300);
+      setTimeout(function(){ btn.classList.remove('launch'); btn.style.transform=''; }, 900);
+    };
+
+  })();
   </script>
+
 </body>
 </html>

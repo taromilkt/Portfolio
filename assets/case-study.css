@@ -38,14 +38,14 @@
   }
   .nav-inner{ display:flex; align-items:center; justify-content:space-between; height:var(--nav-h); }
   .brand{
-    display:inline-flex; align-items:center; justify-content:center;
-    width:34px; height:34px; font-family:var(--serif); font-size:21px;
+    font-family:'Pinyon Script', cursive; font-size:26px; font-weight:400;
+    color:var(--ink); text-decoration:none; line-height:1; letter-spacing:0;
     font-weight:500; font-style:italic; border:1px solid var(--line-strong); border-radius:7px;
   }
   .nav-links{ display:flex; align-items:center; gap:clamp(22px,4vw,46px); font-size:15px; color:var(--muted); }
   .nav-links a{ padding:4px 0; transition:color .18s ease; }
   .nav-links a:hover, .nav-links a.active{ color:var(--ink); }
-  .nav-mark{ font-size:18px; color:var(--ink); line-height:1; transition:transform .5s cubic-bezier(.2,.8,.2,1); }
+  .resume-btn:hover{ color:var(--ink) !important; }
   .nav-mark:hover{ transform:rotate(90deg); }
 
   /* ---------------- LAYOUT: rail + main ---------------- */
@@ -61,7 +61,10 @@
   .rail a:hover{ color:var(--ink); }
   .rail a.active{ color:var(--accent); }
   .rail a.active::before{
-    content:"■"; font-size:7px; margin-right:8px; vertical-align:middle;
+    content:""; display:inline-block; width:5px; height:5px; border-radius:50%;
+    background:var(--accent); margin-right:8px; vertical-align:middle;
+    box-shadow:0 0 0 3px var(--accent-soft);
+    transition:box-shadow .2s;
     color:var(--accent);
   }
   .back{ display:inline-flex; gap:7px; align-items:center; font-size:12px; letter-spacing:.06em;
@@ -148,7 +151,10 @@
   .sec::before{ counter-increment:sec; content:"0" counter(sec);
     position:absolute; left:0; top:6px;
     font-family:var(--serif); font-style:italic; font-weight:500; font-size:clamp(16px,1.6vw,19px);
-    line-height:1; color:var(--accent); }
+    line-height:1; color:var(--accent);
+    opacity:0; transform:translateX(-10px);
+    transition:opacity .45s ease, transform .45s ease; }
+  .sec.sec-revealed::before{ opacity:1; transform:none; }
   .sec.seenext::before{ content:none; }
   .sec-eyebrow{ margin:0 0 14px;
     font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--accent); font-weight:600; }

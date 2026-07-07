@@ -29,12 +29,16 @@
 <title>Portfolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Pinyon+Script&display=swap" rel="stylesheet" />
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script>(function(){var t=localStorage.getItem('ln-theme');if(t)document.documentElement.setAttribute('data-theme',t);})();</script>
 <style>
   :root{
     --bg:#FBFBFA;
     --ink:#1B1A18;
-    --muted:#6F6C66;
+    --muted:#525252;
     --faint:#9A968F;
     --line:#E7E4DE;
     --line-strong:#D8D4CC;
@@ -46,6 +50,7 @@
 
     --serif:"Newsreader", Georgia, "Times New Roman", serif;
     --sans:"Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+    --mono:ui-monospace,"SFMono-Regular",Menlo,monospace;
 
     --maxw:1180px;
     --pad:clamp(20px, 5vw, 56px);
@@ -62,6 +67,54 @@
     text-rendering:optimizeLegibility;
     line-height:1.5;
   }
+  /* ── Warm theme overrides ── */
+  [data-theme="warm"]{
+    --bg:#EDE7DB;       /* Egg Shell — main bg */
+    --ink:#4D342D;       /* Mahogany — primary text */
+    --muted:#9B9879;     /* Olive — accents, secondary text */
+    --faint:#C8B89E;     /* light Linen — very faint */
+    --line:#DDCCB7;      /* Linen — borders */
+    --line-strong:#C8B89E;
+    --card-tan:#B89A7A;
+    --card-grey:#DDCCB7; /* Linen secondary surface */
+    --card-green:#6A6A53;/* Moss */
+    --card-blue:#4D342D; /* Mahogany */
+
+  }
+  /* Eyebrows + section labels — Olive + IBM Plex Mono */
+  [data-theme="warm"] .eyebrow{ color:#9B9879; }
+  [data-theme="warm"] .sec::before{ color:#9B9879; }
+  [data-theme="warm"] .badge{ color:#9B9879; }
+  /* Hover + CTA — Moss */
+  [data-theme="warm"] .nav-links a:hover,
+  [data-theme="warm"] .nav-links a.active{ color:#6A6A53; }
+  [data-theme="warm"] .hero h1 em{ color:#6A6A53; font-family:var(--serif); }
+  [data-theme="warm"] .contact .eyebrow{ color:rgba(255,255,255,.55); font-family:var(--mono); }
+  [data-theme="warm"] .hl{
+    background-image:linear-gradient(to right,oklch(0.84 0.06 95) 0%,oklch(0.84 0.06 95) 100%);
+  }
+  [data-theme="warm"] .skin-grey{ background:#DDCCB7; }
+  [data-theme="warm"] .preview{
+    background:repeating-linear-gradient(45deg,rgba(77,52,45,.018) 0 9px,transparent 9px 18px);
+  }
+  /* theme toggle button */
+  .theme-btn{
+    display:inline-flex; align-items:center; gap:6px;
+    font-size:12px; font-family:var(--sans); letter-spacing:.04em;
+    color:var(--muted); border:1px solid var(--line-strong);
+    background:transparent; border-radius:20px;
+    padding:4px 11px; cursor:pointer;
+    transition:color .18s,border-color .18s,background .18s;
+    white-space:nowrap;
+  }
+  .theme-btn:hover{ color:var(--ink); border-color:var(--ink); }
+  .theme-btn .swatch{
+    width:10px; height:10px; border-radius:50%;
+    background:#9B9879; flex-shrink:0;
+    transition:background .18s;
+  }
+  [data-theme="warm"] .theme-btn .swatch{ background:#1B1A18; }
+
   a{ color:inherit; text-decoration:none; }
 
   .wrap{ max-width:var(--maxw); margin:0 auto; padding-inline:var(--pad); }
@@ -79,14 +132,17 @@
   }
   .brand{
     display:inline-flex; align-items:center; justify-content:center;
-    width:34px; height:34px;
+    width:34px; height:34px; font-family:var(--serif); font-size:21px;
+    font-weight:500; font-style:italic; border:1px solid var(--line-strong); border-radius:7px;
+    color:var(--ink); text-decoration:none; line-height:1;
+  }
     font-family:var(--serif); font-size:21px; font-weight:500;
     font-style:italic;
     border:1px solid var(--line-strong); border-radius:7px;
   }
   .nav-links{
-    display:flex; align-items:center; gap:clamp(22px, 4vw, 46px);
-    font-size:15px; color:var(--muted);
+    display:flex; align-items:center; gap:clamp(36px,5vw,64px) !important;
+    font-size:15px; color:var(--muted); flex-shrink:0;
   }
   .nav-links a{ position:relative; padding:4px 0; transition:color .18s ease; }
   .nav-links a:hover{ color:var(--ink); }
@@ -95,11 +151,20 @@
     content:"■"; font-size:8px; margin-right:7px; vertical-align:middle;
     color:var(--ink);
   }
+  .resume-btn:hover{ color:var(--ink) !important; }
   .nav-mark{
     font-size:18px; color:var(--ink); line-height:1;
-    transition:transform .5s cubic-bezier(.2,.8,.2,1);
+    background:none; border:none; padding:0; cursor:pointer;
+    display:inline-flex; align-items:center; gap:6px;
+    transition:color .18s;
   }
-  .nav-mark:hover{ transform:rotate(90deg); }
+  .nav-mark:hover{ color:var(--muted); }
+  .light-switch .rocker-group{
+    transform-origin:14px 16px;
+    transition:transform .25s cubic-bezier(.4,1.4,.6,1);
+  }
+  [data-theme="warm"] .light-switch .rocker-group{ transform:rotate(180deg); }
+  [data-theme="warm"] .nav-swatch{ background:#1B1A18; }
 
   /* ---------------- HERO ---------------- */
   .hero{ padding-top:clamp(56px, 11vh, 120px); padding-bottom:clamp(48px, 8vh, 88px); }
@@ -119,6 +184,20 @@
     color:var(--muted); max-width:46ch; margin:0;
   }
   .hero-sub strong{ color:var(--ink); font-weight:500; }
+  /* marker-highlight micro-interaction */
+  .hl{
+    background-image:linear-gradient(to right, oklch(0.91 0.09 78) 0%, oklch(0.91 0.09 78) 100%);
+    background-repeat:no-repeat;
+    background-size:0% 84%;
+    background-position:0 95%;
+    border-radius:3px;
+    padding:0 2px;
+    cursor:default;
+    transition:background-size .45s cubic-bezier(.2,.8,.2,1);
+  }
+  .hl:hover{ background-size:100% 84%; }
+  .chip{ transition:transform .2s ease, box-shadow .2s ease; cursor:default; }
+  .chip:hover{ transform:translateY(-2px); box-shadow:0 6px 14px -8px rgba(10,125,107,.45); }
   .chip{
     display:inline-flex; align-items:center; gap:6px;
     vertical-align:baseline;
@@ -260,8 +339,8 @@
   /* ---------------- ABOUT ---------------- */
   .about{ padding-block:clamp(56px,9vh,96px); border-top:1px solid var(--line); }
   .about-grid{
-    display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
-    gap:clamp(32px,6vw,80px); align-items:center;
+    display:grid; grid-template-columns:minmax(0,1.8fr) minmax(0,1fr);
+    gap:clamp(20px,3vw,44px); align-items:start;
   }
   .about h2{
     font-family:var(--serif); font-weight:400;
@@ -274,7 +353,80 @@
     margin:0 0 16px; max-width:54ch;
   }
   .about p strong{ color:var(--ink); font-weight:500; }
-  .portrait{
+  /* ── Magnetic board ── */
+  .mag-board{
+    position:relative;
+    background:
+      radial-gradient(ellipse at 62% 32%, rgba(255,255,255,.72) 0%, rgba(255,255,255,0) 58%),
+      repeating-linear-gradient(91deg, rgba(180,192,204,.09) 0px, rgba(180,192,204,.09) 1px, transparent 1px, transparent 3px),
+      linear-gradient(165deg,#c4c9ce 0%,#a2a8ae 22%,#b4babe 55%,#cdd2d7 84%,#bec4c9 100%);
+    border-radius:10px; width:100%; aspect-ratio:2/3;
+    overflow:hidden;
+    border:2px solid #909599;
+    box-shadow:
+      0 0 0 1px rgba(255,255,255,.55),
+      0 18px 52px rgba(0,0,0,.2),
+      inset 0 1px rgba(255,255,255,.85),
+      inset 0 -1px rgba(0,0,0,.1);
+  }
+  .screw{
+    position:absolute; width:11px; height:11px; border-radius:50%;
+    background:radial-gradient(circle at 38% 32%,#d8dadc,#9a9d9f 60%,#7c7e80);
+    box-shadow:0 1px 3px rgba(0,0,0,.4), inset 0 1px 1px rgba(255,255,255,.25);
+    z-index:10;
+  }
+  /* borderless photo cards */
+  .mag-photo{
+    position:absolute;
+    transform:rotate(var(--rot,0deg));
+    transition:transform .2s ease;
+    z-index:2; cursor:default;
+  }
+  .mag-photo:hover{
+    transform:rotate(var(--rot,0deg)) translateY(-5px);
+    z-index:20;
+  }
+  .mag-photo img{ width:100%; display:block; object-fit:cover; box-shadow:0 4px 18px rgba(0,0,0,.34); }
+  .mag-photo image-slot{ display:block; width:100%; box-shadow:0 4px 18px rgba(0,0,0,.34); }
+  /* bubble tooltip */
+  .bubble{
+    position:absolute; bottom:8px; left:50%;
+    transform:translateX(-50%);
+    background:rgba(255,255,255,.92); color:#1B1A18;
+    font-size:10px; font-family:var(--sans); font-weight:500;
+    padding:4px 10px; border-radius:20px; white-space:nowrap;
+    box-shadow:0 2px 8px rgba(0,0,0,.18);
+    opacity:0; transition:opacity .2s; pointer-events:none; z-index:30;
+  }
+  .mag-photo:hover .bubble{ opacity:1; }
+  /* scrabble tiles */
+  .scrabble{
+    position:absolute; width:28px; height:28px;
+    background:linear-gradient(145deg,#faf5e9,#ede0c4);
+    border-radius:3px;
+    box-shadow:0 3px 8px rgba(0,0,0,.3), inset 0 1px rgba(255,255,255,.7);
+    display:flex; align-items:center; justify-content:center;
+    font-family:Georgia,serif; font-weight:700; font-size:15px;
+    color:#1a1206; transform:rotate(var(--rot,0deg));
+    z-index:6; cursor:default; user-select:none; line-height:1;
+  }
+  .scrabble sub{
+    position:absolute; bottom:2px; right:3px;
+    font-size:7px; font-weight:400; color:#666; font-family:Georgia,serif;
+  }
+  /* clay magnets */
+  .clay-magnet{
+    position:absolute; z-index:8;
+    filter:drop-shadow(0 2px 4px rgba(0,0,0,.28));
+    transition:filter .18s ease, transform .18s ease;
+    transform:rotate(var(--rot,0deg));
+  }
+  .clay-magnet:hover{
+    filter:drop-shadow(0 3px 6px rgba(0,0,0,.36)) brightness(1.06);
+    transform:rotate(var(--rot,0deg)) scale(1.18);
+  }
+  @media(max-width:860px){ .mag-board{ max-width:340px; margin-inline:auto; } }
+.portrait{
     aspect-ratio:4/5; border-radius:8px; overflow:hidden;
     border:1px solid var(--line);
     background:
@@ -290,7 +442,7 @@
   /* ---------------- FOOTER / CONTACT ---------------- */
   .contact{
     background:var(--ink); color:#F4F2ED;
-    padding-block:clamp(64px,10vh,110px);
+    padding-block:clamp(36px,5vh,56px);
     margin-top:clamp(20px,4vh,40px);
   }
   .contact .eyebrow{ color:rgba(244,242,237,.5); }
@@ -324,7 +476,7 @@
     .hero-grid{ grid-template-columns:1fr; gap:34px; }
     .preview{ aspect-ratio:16/9; }
     .about-grid{ grid-template-columns:1fr; gap:34px; }
-    .portrait{ max-width:300px; }
+    .portrait{ max-width:320px; }
   }
   @media (max-width:680px){
     .grid{ grid-template-columns:1fr; gap:34px; }
@@ -334,64 +486,60 @@
   @media (max-width:480px){
     .nav-links a.play{ display:none; }
   }
+  @keyframes previewFadeIn { from { opacity: 0; } to { opacity: 1; } }
 </style>
 </head>
 <body>
 
+  <template id="__bundler_thumbnail" data-bg-color="#FBFBFA">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#FBFBFA"/>
+      <rect x="516" y="300" width="168" height="168" rx="22" fill="none" stroke="#D8D4CC" stroke-width="3"/>
+      <text x="600" y="430" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="150" font-weight="500" fill="#1B1A18" text-anchor="middle">a</text>
+    </svg>
+  </template>
+
   <!-- ============ NAV ============ -->
   <header class="nav">
     <div class="wrap nav-inner">
-      <a href="#top" class="brand" aria-label="Home">a</a>
-      <nav class="nav-links">
+      <a href="#top" class="brand" aria-label="Home">ln</a>
+      <nav class="nav-links" style="display:flex;align-items:center;gap:56px;">
         <a href="#work" class="active">work</a>
-        <a href="#play" class="play">play</a>
         <a href="#about">about</a>
+        <a href="uploads/Lindsey Nguyen Resume.docx" target="_blank" rel="noopener" class="resume-btn">resume</a>
       </nav>
-      <a href="#contact" class="nav-mark" aria-label="Menu">&#10043;</a>
+      <button class="nav-mark" id="theme-toggle" aria-label="Toggle colour theme">
+        <svg class="light-switch" width="28" height="32" viewBox="0 0 28 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect x="1" y="1" width="26" height="30" rx="5" stroke="currentColor" stroke-width="1" fill="none"/>
+          <g class="rocker-group">
+            <rect x="7" y="5" width="14" height="22" rx="3" stroke="currentColor" stroke-width="1" fill="var(--bg)"/>
+            <line x1="14" y1="9" x2="14" y2="12" stroke="currentColor" stroke-width="1" stroke-linecap="round"/>
+            <circle cx="14" cy="22" r="2" stroke="currentColor" stroke-width="1" fill="none"/>
+          </g>
+        </svg>
+      </button>
     </div>
   </header>
 
   <main id="top">
 
     <!-- ============ HERO ============ -->
-    <section class="hero">
-      <div class="wrap hero-grid">
-        <div class="reveal">
-          <h1>I&rsquo;m <span data-name>Lindsey</span>, a product designer who <em>designs with&nbsp;AI.</em></h1>
-          <p class="hero-sub">
-            Howdy &mdash; a UX designer based in Texas, previously shaping real products at
-            <span class="chip"><i style="--c:#0a7d6b"></i><strong>Emerson</strong></span>.
-            Master&rsquo;s student in Information Studies at UT Austin, exploring how AI reshapes the way we design.
-          </p>
-        </div>
-
-        <!-- static stand-in for the interactive preview coming later -->
-        <div class="preview reveal" aria-label="Interactive preview placeholder">
-          <span class="meta">preview&nbsp;/&nbsp;01</span>
-          <div class="hintmid"><span>interactive preview<br/>&mdash; coming soon &mdash;</span></div>
-          <span class="corner">hover to explore</span>
-        </div>
-      </div>
-    </section>
+    <div id="hero-root"></div>
 
     <!-- ============ WORK ============ -->
     <section class="work" id="work">
       <div class="wrap">
         <div class="sec-head reveal">
-          <span class="eyebrow">Selected Work</span>
-          <span class="sec-note">2023 &mdash; 2026</span>
+          <span class="eyebrow">Projects</span>
+          <span class="sec-note">2024 &mdash; 2026</span>
         </div>
 
         <div class="grid">
 
           <!-- card 1 -->
           <a href="yes-chef.html" class="card reveal">
-            <div class="thumb skin-tan">
-              <div class="phones">
-                <div class="phone"><div class="screen-ph"></div></div>
-                <div class="phone"><div class="screen-ph"><small>screenshot</small></div></div>
-                <div class="phone"><div class="screen-ph"></div></div>
-              </div>
+            <div class="thumb skin-tan" style="padding:0;overflow:hidden;">
+              <video src="uploads/device-mockup_2x_postspark_2026-06-24_17-02-10.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
             </div>
             <div class="cap">
               <h3>Yes, Chef</h3>
@@ -401,12 +549,9 @@
 
           <!-- card 2 -->
           <a href="nexus.html" class="card reveal">
-            <div class="thumb skin-blue">
+            <div class="thumb skin-blue" style="padding:0;overflow:hidden;">
               <div class="badge"><b>&#9733; 1st Place</b> &middot; Visual Design</div>
-              <div class="laptop">
-                <div class="lid"><div class="screen-ph blue"><small>screenshot</small></div></div>
-                <div class="base"></div>
-              </div>
+              <video src="uploads/case study showcase video -61410b31.mp4" autoplay loop muted playsinline style="width: 100%; height: 326px; object-fit: cover; object-position: center center; display: block"></video>
             </div>
             <div class="cap">
               <h3>Nexus</h3>
@@ -416,11 +561,8 @@
 
           <!-- card 3 -->
           <a href="emerson.html" class="card reveal">
-            <div class="thumb skin-grey">
-              <div class="laptop">
-                <div class="lid"><div class="screen-ph"><small>screenshot</small></div></div>
-                <div class="base"></div>
-              </div>
+            <div class="thumb skin-grey" style="padding:0;overflow:hidden;">
+              <video src="uploads/emerson case study.mp4" autoplay loop muted playsinline style="width: 100%; height: 326px; object-fit: cover; display: block; padding: 0px"></video>
             </div>
             <div class="cap">
               <h3>DVA</h3>
@@ -430,15 +572,12 @@
 
           <!-- card 4 -->
           <a href="figmathon.html" class="card reveal">
-            <div class="thumb skin-green">
-              <div class="phones">
-                <div class="phone"><div class="screen-ph dark"></div></div>
-                <div class="phone"><div class="screen-ph dark"><small>screenshot</small></div></div>
-                <div class="phone"><div class="screen-ph dark"></div></div>
-              </div>
+            <div class="thumb skin-green" style="padding:0;overflow:hidden;">
+              <div class="badge"><b>Figbuild Competition</b> &middot; 2026</div>
+              <img src="uploads/device-mockup_1x_postspark_2026-07-01_14-24-28.gif" style="width:100%;height:100%;object-fit:cover;display:block;">
             </div>
             <div class="cap">
-              <h3>Figmathon</h3>
+              <h3>Chronoscape</h3>
               <span class="role">Product Designer</span>
             </div>
           </a>
@@ -451,20 +590,130 @@
     <section class="about" id="about">
       <div class="wrap about-grid">
         <div class="reveal">
-          <span class="eyebrow">About</span>
-          <h2>I design calm, human interfaces &mdash; and I&rsquo;m learning to design them <em>with AI.</em></h2>
-          <p>
-            I&rsquo;m a UX designer based in Texas and a master&rsquo;s student in Information Studies at
-            UT Austin. I care about <strong>research-backed decisions</strong>, clarity, and products
-            that feel considered rather than clever.
-          </p>
-          <p>
-            Previously I helped shape real products at <strong>Emerson</strong>. Lately I&rsquo;m exploring
-            how AI changes the design process &mdash; treating it as a material and a collaborator,
-            not just a feature to ship.
-          </p>
+          <span class="eyebrow">A LITTLE ABOUT</span>
+          <h2>Lindsey Nguyen</h2>
+          <div>
+            <p style="color: #525252"><b>Thirty seconds of fear is worth a lifetime of regret</b> or so I heard once, and I think about it more than I probably should. It&rsquo;s the reason I walked away from a pre-dental track I wasn&rsquo;t in love with and into a design studio I knew nothing about. That gamble is still paying off.</p>
+            <p style="color: #525252">I just finished my master&rsquo;s in Information Studies at UT Austin, where I got hooked on the research behind every design choice the quiet work of making something so intuitive people never have to think twice about it. Outside of that, I&rsquo;m the person cracking open a board game with a rulebook heavier than my laptop, the friend who won&rsquo;t shut up about a movie for a week straight, and the one booking a flight the second the price looks reasonable.</p>
+          </div>
         </div>
-        <div class="portrait reveal"><small>portrait</small></div>
+        <div class="mag-board reveal" id="mag-board">
+          <span class="screw" style="top:12px;left:12px;"></span>
+          <span class="screw" style="top:12px;right:12px;"></span>
+          <span class="screw" style="bottom:12px;left:12px;"></span>
+          <span class="screw" style="bottom:12px;right:12px;"></span>
+
+          <!-- Scrabble: ABOUT ME in the gaps -->
+          <div class="scrabble" style="left:42%;top:5%;--rot:-6deg;">A<sub>1</sub></div>
+          <div class="scrabble" style="left:51%;top:38%;--rot:3deg;">B<sub>3</sub></div>
+          <div class="scrabble" style="left:44%;top:44%;--rot:-3deg;">O<sub>1</sub></div>
+          <div class="scrabble" style="left:34%;top:69%;--rot:5deg;">U<sub>1</sub></div>
+          <div class="scrabble" style="left:72%;top:72%;--rot:-4deg;">T<sub>1</sub></div>
+          <div class="scrabble" style="left:6%;top:68%;--rot:-5deg;">M<sub>3</sub></div>
+          <div class="scrabble" style="left:79%;top:91%;--rot:4deg;">E<sub>1</sub></div>
+
+          <!-- Clay magnet: cherry -->
+          <div class="clay-magnet" style="left:1%;top:2%;--rot:-10deg;">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M11 22 Q9 11 15 7 Q21 11 19 22" stroke="#2d7a1e" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="9" cy="23" r="5.5" fill="#c0392b"/>
+              <circle cx="21" cy="23" r="5.5" fill="#c0392b"/>
+              <circle cx="7.5" cy="21.5" r="2" fill="#e74c3c" opacity=".4"/>
+              <circle cx="19.5" cy="21.5" r="2" fill="#e74c3c" opacity=".4"/>
+            </svg>
+          </div>
+          <!-- Clay magnet: pink flower -->
+          <div class="clay-magnet" style="left:85%;top:4%;--rot:8deg;">
+            <svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="14" cy="5" rx="3.5" ry="5.5" fill="#f8a4c8"/>
+              <ellipse cx="14" cy="5" rx="3.5" ry="5.5" fill="#f8a4c8" transform="rotate(60 14 14)"/>
+              <ellipse cx="14" cy="5" rx="3.5" ry="5.5" fill="#f8a4c8" transform="rotate(120 14 14)"/>
+              <ellipse cx="14" cy="5" rx="3.5" ry="5.5" fill="#f8a4c8" transform="rotate(180 14 14)"/>
+              <ellipse cx="14" cy="5" rx="3.5" ry="5.5" fill="#f8a4c8" transform="rotate(240 14 14)"/>
+              <ellipse cx="14" cy="5" rx="3.5" ry="5.5" fill="#f8a4c8" transform="rotate(300 14 14)"/>
+              <circle cx="14" cy="14" r="5" fill="#ffd54f"/>
+              <circle cx="14" cy="14" r="2.5" fill="#f9a825"/>
+            </svg>
+          </div>
+          <!-- Clay magnet: lemon -->
+          <div class="clay-magnet" style="left:1%;top:47%;--rot:-8deg;">
+            <svg width="28" height="28" viewBox="0 0 28 28" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="14" cy="14" r="12" fill="#ffe066"/>
+              <circle cx="14" cy="14" r="9" fill="#fffde7"/>
+              <line x1="14" y1="5" x2="14" y2="23" stroke="#ffe066" stroke-width="1.5"/>
+              <line x1="5" y1="14" x2="23" y2="14" stroke="#ffe066" stroke-width="1.5"/>
+              <line x1="7.5" y1="7.5" x2="20.5" y2="20.5" stroke="#ffe066" stroke-width="1.5"/>
+              <line x1="20.5" y1="7.5" x2="7.5" y2="20.5" stroke="#ffe066" stroke-width="1.5"/>
+              <circle cx="14" cy="14" r="12" fill="none" stroke="#f9c400" stroke-width="1.5"/>
+            </svg>
+          </div>
+          <!-- Clay magnet: button -->
+          <div class="clay-magnet" style="left:87%;top:46%;--rot:6deg;">
+            <svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="13" cy="13" r="12" fill="#d4a574"/>
+              <circle cx="13" cy="13" r="9" fill="none" stroke="#c49565" stroke-width="1.2"/>
+              <circle cx="9.5" cy="9.5" r="1.8" fill="#8b5e3c"/>
+              <circle cx="16.5" cy="9.5" r="1.8" fill="#8b5e3c"/>
+              <circle cx="9.5" cy="16.5" r="1.8" fill="#8b5e3c"/>
+              <circle cx="16.5" cy="16.5" r="1.8" fill="#8b5e3c"/>
+            </svg>
+          </div>
+          <!-- Clay magnet: strawberry -->
+          <div class="clay-magnet" style="left:28%;top:72%;--rot:-4deg;">
+            <svg width="26" height="30" viewBox="0 0 26 30" xmlns="http://www.w3.org/2000/svg">
+              <path d="M13 7 Q10 3 7 4 Q9 7 13 7Z" fill="#4caf50"/>
+              <path d="M13 7 Q13 2 10 1 Q11 5 13 7Z" fill="#388e3c"/>
+              <path d="M13 7 Q16 3 19 4 Q17 7 13 7Z" fill="#4caf50"/>
+              <path d="M13 7 Q13 2 16 1 Q15 5 13 7Z" fill="#388e3c"/>
+              <path d="M5 13 Q4 23 13 29 Q22 23 21 13 Q17 9 13 10 Q9 9 5 13Z" fill="#e53935"/>
+              <ellipse cx="10" cy="16" rx="1" ry="1.2" fill="#ffcdd2" transform="rotate(-10 10 16)"/>
+              <ellipse cx="14" cy="14" rx="1" ry="1.2" fill="#ffcdd2"/>
+              <ellipse cx="17" cy="18" rx="1" ry="1.2" fill="#ffcdd2"/>
+              <ellipse cx="11" cy="22" rx="1" ry="1.2" fill="#ffcdd2"/>
+              <ellipse cx="15" cy="22" rx="1" ry="1.2" fill="#ffcdd2"/>
+            </svg>
+          </div>
+          <!-- Clay magnet: daisy -->
+          <div class="clay-magnet" style="left:57%;top:47%;--rot:12deg;">
+            <svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
+              <ellipse cx="13" cy="4" rx="2.5" ry="4.5" fill="white"/>
+              <ellipse cx="13" cy="4" rx="2.5" ry="4.5" fill="white" transform="rotate(45 13 13)"/>
+              <ellipse cx="13" cy="4" rx="2.5" ry="4.5" fill="white" transform="rotate(90 13 13)"/>
+              <ellipse cx="13" cy="4" rx="2.5" ry="4.5" fill="white" transform="rotate(135 13 13)"/>
+              <ellipse cx="13" cy="4" rx="2.5" ry="4.5" fill="white" transform="rotate(180 13 13)"/>
+              <ellipse cx="13" cy="4" rx="2.5" ry="4.5" fill="white" transform="rotate(225 13 13)"/>
+              <ellipse cx="13" cy="4" rx="2.5" ry="4.5" fill="white" transform="rotate(270 13 13)"/>
+              <ellipse cx="13" cy="4" rx="2.5" ry="4.5" fill="white" transform="rotate(315 13 13)"/>
+              <circle cx="13" cy="13" r="5" fill="#ffc107"/>
+            </svg>
+          </div>
+
+          <!-- Japan travel: top-left -->
+          <div class="mag-photo" style="left:3%;top:3%;width:38%;--rot:-3deg;">
+            <div class="bubble">Kyoto &#8212; Fushimi Inari &#x26E9;</div>
+            <img src="uploads/6-efca6e85.jpg" alt="Japan" style="aspect-ratio:3/4;"/>
+          </div>
+          <!-- Ark Nova: top-right -->
+          <div class="mag-photo" style="left:54%;top:5%;width:38%;--rot:5deg;">
+            <div class="bubble">Ark Nova &#8212; obsession &#x1F992;</div>
+            <img src="uploads/pic6293412.webp" alt="Ark Nova" style="aspect-ratio:3/4;"/>
+          </div>
+          <!-- Whiplash: mid-left -->
+          <div class="mag-photo" style="left:3%;top:47%;width:28%;--rot:-2deg;">
+            <div class="bubble">Whiplash &#8212; top 5 films &#x1F3A5;</div>
+            <img src="uploads/c297506fa1bce64f87e03814972b306a.jpg" alt="Whiplash" style="aspect-ratio:2/3;"/>
+          </div>
+          <!-- Taro: mid-right -->
+          <div class="mag-photo" style="left:52%;top:44%;width:42%;--rot:3deg;">
+            <div class="bubble">Taro &#x1F436; my dog</div>
+            <img src="uploads/D9878EE9-34A6-43D4-A015-3AB7DE109D6B_1_105_c.jpeg" alt="Taro" style="aspect-ratio:4/3;"/>
+          </div>
+          <!-- Pickleball: bottom center -->
+          <div class="mag-photo" style="left:14%;top:75%;width:52%;--rot:-4deg;">
+            <div class="bubble">pickleball &#x1F3D3;</div>
+            <img src="uploads/8aa9f646c7f2b928379a2d6068abc74f.jpg" alt="Pickleball" style="aspect-ratio:4/3;"/>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -474,19 +723,207 @@
   <footer class="contact" id="contact">
     <div class="wrap">
       <span class="eyebrow">Get in touch</span>
-      <h2>Let&rsquo;s build <em>something good.</em></h2>
-      <a class="mail" href="mailto:hello@example.com">hello@example.com</a>
+      <h2>Let&rsquo;s design with <i>intention</i>.</h2>
+      <a class="mail" href="mailto:lindseytramnguyen@gmail.com">lindseytramnguyen@gmail.com</a>
       <div class="contact-foot">
-        <span>&copy; 2026 <span data-name>Lindsey Nguyen</span>. Designed with care &amp; a little AI.</span>
+        <span>&copy; 2026 <span data-name>Lindsey Nguyen</span>. Designed with Early Grey Tea &amp; a little AI.</span>
         <nav class="socials">
-          <a href="#">LinkedIn</a>
-          <a href="#">Read.cv</a>
-          <a href="#">GitHub</a>
+          <a href="https://www.linkedin.com/in/lindseythuytramnguyen" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="uploads/Lindsey Nguyen Resume.docx" target="_blank" rel="noopener">Resume</a>
           <a href="#">Email</a>
         </nav>
       </div>
     </div>
   </footer>
 
+  <script type="text/babel">
+    const { useState } = React;
+
+    function PhotoChip({ label, chipKey, bg, border, dot, hoveredPhoto, setHoveredPhoto }) {
+      const isActive = hoveredPhoto === chipKey;
+      return (
+        <span
+          role="button"
+          tabIndex={0}
+          aria-label={label}
+          onMouseEnter={() => setHoveredPhoto(chipKey)}
+          onMouseLeave={() => setHoveredPhoto(null)}
+          onFocus={() => setHoveredPhoto(chipKey)}
+          onBlur={() => setHoveredPhoto(null)}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setHoveredPhoto(hoveredPhoto === chipKey ? null : chipKey); }
+            if (e.key === 'Escape') setHoveredPhoto(null);
+          }}
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: '5px',
+            background: bg, border: `1px solid ${isActive ? dot : border}`,
+            borderRadius: '6px', padding: '2px 8px',
+            fontWeight: 700, fontSize: '12px', color: '#1B1A18',
+            cursor: 'pointer', outline: 'none',
+            transition: 'border-color .18s ease, box-shadow .18s ease',
+            verticalAlign: 'baseline', lineHeight: 1.5,
+            boxShadow: isActive ? `0 0 0 2px ${dot}33` : 'none',
+          }}
+        >
+          <span style={{ width: '6px', height: '6px', borderRadius: '50%', background: dot, display: 'inline-block', flexShrink: 0 }}></span>
+          {label}
+        </span>
+      );
+    }
+
+    const beadColors = ['#FF6B6B','#FFD93D','#6BCB77','#4D96FF','#FF922B','#CC5DE8','#F06595','#74C0FC','#A9E34B','#FFA8A8'];
+
+    function BeadText({ text, href }) {
+      const words = text.split(' ');
+      const inner = (
+        <span style={{ display:'flex', alignItems:'center', flexWrap:'wrap', gap:'4px' }}>
+          {words.map((word, wi) => (
+            <React.Fragment key={wi}>
+              {wi > 0 && (
+                <span style={{ display:'flex', gap:'3px', alignItems:'center' }}>
+                  {[0,1,2].map(i => (
+                    <span key={i} style={{ width: i===1?'7px':'5px', height: i===1?'7px':'5px', borderRadius:'50%', background: beadColors[(wi*3+i)%beadColors.length], boxShadow:'0 1px 4px rgba(0,0,0,.18), inset 0 1px rgba(255,255,255,.5)', display:'inline-block', flexShrink:0 }}></span>
+                  ))}
+                </span>
+              )}
+              <span style={{ display:'flex', gap:'2px' }}>
+                {word.split('').map((ch, ci) => (
+                  <span key={ci} style={{
+                    display:'flex', alignItems:'center', justifyContent:'center',
+                    width:'21px', height:'21px', borderRadius:'50%',
+                    background:'linear-gradient(145deg,#fff 0%,#f0efec 100%)',
+                    boxShadow:'0 2px 6px rgba(0,0,0,.16), inset 0 1px rgba(255,255,255,.95), inset 0 -1px rgba(0,0,0,.06)',
+                    fontSize:'9.5px', fontWeight:'700', color:'#1B1A18',
+                    fontFamily:'"Helvetica Neue", Arial, sans-serif',
+                    border:'0.5px solid rgba(0,0,0,.07)',
+                    flexShrink:0,
+                  }}>{ch.toUpperCase()}</span>
+                ))}
+              </span>
+            </React.Fragment>
+          ))}
+        </span>
+      );
+      return href
+        ? <a href={href} style={{ display:'flex', marginTop:'28px', textDecoration:'none', cursor:'pointer' }}>{inner}</a>
+        : <div style={{ display:'flex' }}>{inner}</div>;
+    }
+
+    function InteractivePreview({ isExternalHovered, hoveredPhoto, lastHovered }) {
+      const active = hoveredPhoto || (isExternalHovered ? 'lindsey' : null) || lastHovered;
+      const photos = {
+        lindsey: { src: 'uploads/Nguyen_Lindsey_224-0062 (3).jpg', pos: 'center top' },
+        masters: { src: 'uploads/3.jpg', pos: 'center 50%' },
+        utaustin: { src: 'uploads/5.jpg', pos: 'center 40%' },
+        emerson: { src: 'uploads/4.jpg', pos: 'center center' },
+      };
+      const photo = active ? photos[active] : null;
+      return (
+        <div style={{
+          border: '1px solid #D8D4CC', borderRadius: '6px',
+          aspectRatio: '4/3',
+          position: 'relative', overflow: 'hidden',
+          background: photo ? '#1B1A18' : 'repeating-linear-gradient(45deg, rgba(27,26,24,.022) 0 9px, transparent 9px 18px)',
+        }}>
+          {photo ? (
+            <img
+              key={photo.src}
+              src={photo.src}
+              alt={active}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: photo.pos, display: 'block', animation: 'previewFadeIn .25s ease' }}
+            />
+          ) : (
+            <>
+              <div style={{ position: 'absolute', inset: 0, display: 'flex', flexDirection:'column', alignItems: 'center', justifyContent: 'center', gap:'10px', padding: '24px' }}>
+                <BeadText text="hover to explore" href={null} />
+              </div>
+            </>
+          )}
+        </div>
+      );
+    }
+
+    function HeroBio() {
+      const [isNameHovered, setIsNameHovered] = useState(false);
+      const [hoveredPhoto, setHoveredPhoto] = useState(null);
+      const [lastPhoto, setLastPhoto] = useState(null);
+
+      const setPhoto = (key) => {
+        setHoveredPhoto(key);
+        if (key) setLastPhoto(key);
+      };
+
+      return (
+        <section className="hero">
+          <div className="wrap hero-grid">
+            <div className="reveal">
+              <h1 style={{ fontFamily: '"Newsreader", Georgia, serif', fontWeight: 500, fontSize: 'clamp(2rem, 5vw, 3.25rem)', lineHeight: 1.1, letterSpacing: '-.012em', color: '#1B1A18', margin: '0 0 14px' }}>
+                Howdy, I&rsquo;m{' '}
+                <span
+                  role="button"
+                  tabIndex={0}
+                  onMouseEnter={() => { setIsNameHovered(true); setPhoto('lindsey'); }}
+                  onMouseLeave={() => { setIsNameHovered(false); setHoveredPhoto(null); }}
+                  onFocus={() => { setIsNameHovered(true); setPhoto('lindsey'); }}
+                  onBlur={() => { setIsNameHovered(false); setHoveredPhoto(null); }}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setIsNameHovered(v => !v); }
+                    if (e.key === 'Escape') { setIsNameHovered(false); setPhoto(null); }
+                  }}
+                  style={{
+                    textDecoration: 'underline wavy',
+                    textDecorationColor: `rgba(176,139,102,${isNameHovered ? 1 : 0.5})`,
+                    textUnderlineOffset: '6px',
+                    cursor: 'pointer',
+                    color: isNameHovered ? '#B08B66' : 'inherit',
+                    transition: 'color .18s ease, text-decoration-color .18s ease',
+                    outline: 'none',
+                  }}
+                >Lindsey</span>.
+              </h1>
+              <p style={{ fontFamily: '"Newsreader", Georgia, serif', fontStyle: 'italic', fontSize: 'clamp(1.05rem, 1.5vw, 1.35rem)', color: '#525252', margin: '0 0 20px', lineHeight: 1.4 }}>
+                I design for the moment things click.
+              </p>
+              <p style={{ fontSize: 'clamp(14px, 1vw, 15px)', color: '#525252', lineHeight: 1.75, margin: 0, maxWidth: '46ch' }}>
+                A UX designer based in Texas, previously shaping real products at{' '}
+                <PhotoChip label="Emerson" chipKey="emerson" bg="#EEEDE9" border="#D8D4CC" dot="#1C8CFF" hoveredPhoto={hoveredPhoto} setHoveredPhoto={setPhoto} />.{' '}
+                I recently completed my{' '}
+                <PhotoChip label="Master's" chipKey="masters" bg="#F4F6F0" border="#D5DCD0" dot="#34402B" hoveredPhoto={hoveredPhoto} setHoveredPhoto={setPhoto} />{' '}
+                degree in Information Studies at{' '}
+                <PhotoChip label="UT Austin" chipKey="utaustin" bg="#FDF5F0" border="#E0D5CE" dot="#BF5700" hoveredPhoto={hoveredPhoto} setHoveredPhoto={setPhoto} />,{' '}
+                exploring how AI reshapes the way we design.
+              </p>
+            </div>
+            <div className="reveal">
+              <InteractivePreview isExternalHovered={isNameHovered} hoveredPhoto={hoveredPhoto} lastHovered={lastPhoto} />
+            </div>
+          </div>
+        </section>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById('hero-root')).render(<HeroBio />);
+  </script>
+
+  <script src="image-slot.js"></script>
+  <script>
+    (function(){
+      var html = document.documentElement;
+      var btn = document.getElementById('theme-toggle');
+      function apply(theme){
+        if(theme === 'warm'){
+          html.setAttribute('data-theme','warm');
+        } else {
+          html.removeAttribute('data-theme');
+        }
+      }
+      apply(localStorage.getItem('ln-theme') || '');
+      btn.addEventListener('click', function(){
+        var next = html.getAttribute('data-theme') === 'warm' ? '' : 'warm';
+        localStorage.setItem('ln-theme', next);
+        apply(next);
+      });
+    })();
+  </script>
 </body>
 </html>

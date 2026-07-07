@@ -6,7 +6,7 @@
 <title>DVA &mdash; Lindsey Nguyen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Pinyon+Script&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/case-study.css" />
 <style>
   /* page-scoped extras for DVA's numbered problem/solution lists + disclaimer */
@@ -19,19 +19,37 @@
   .numlist p{ margin:0; max-width:58ch; }
   .disclaimer{ font-size:13px; line-height:1.6; color:var(--faint); font-style:italic;
     border-top:1px solid var(--line); padding-top:18px; max-width:62ch; }
+[data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s ease;}
+[data-reveal].revealed{opacity:1;transform:none;}
+[data-reveal][data-delay="1"]{transition-delay:.15s;}
+[data-reveal][data-delay="2"]{transition-delay:.3s;}
+[data-reveal][data-delay="3"]{transition-delay:.45s;}
+[data-reveal][data-delay="4"]{transition-delay:.6s;}
+[data-scale]{transform:scale(.95);opacity:0;transition:transform .65s cubic-bezier(.4,0,.2,1),opacity .55s ease;}
+[data-scale].revealed{transform:scale(1);opacity:1;}
+.rail ol{list-style:none;padding:0;}
+.rail ol li{position:relative;}
+#cursor-follow{position:absolute;font-size:24px;pointer-events:none;top:24px;right:24px;z-index:10;line-height:1;transition:top .08s ease,left .08s ease;will-change:top,left;}
 </style>
 </head>
 <body style="--accent:oklch(0.52 0.08 250);--accent-soft:oklch(0.96 0.022 250);--accent-line:oklch(0.86 0.045 250)">
 
+  <template id="__bundler_thumbnail" data-bg-color="#FBFBFA">
+    <svg viewBox="0 0 1200 800" xmlns="http://www.w3.org/2000/svg">
+      <rect width="1200" height="800" fill="#FBFBFA"/>
+      <rect x="430" y="318" width="340" height="164" rx="14" fill="#DCE1EC"/>
+      <text x="600" y="438" font-family="Georgia, 'Times New Roman', serif" font-size="120" font-weight="600" fill="#1B1A18" text-anchor="middle">DVA<tspan fill="#3a63b8">.</tspan></text>
+    </svg>
+  </template>
+
   <header class="nav">
     <div class="wrap nav-inner">
-      <a href="Portfolio.html" class="brand" aria-label="Home">a</a>
+      <a href="Portfolio.html" class="brand" aria-label="Home">ln</a>
       <nav class="nav-links">
         <a href="Portfolio.html#work" class="active">work</a>
-        <a href="Portfolio.html#about">play</a>
         <a href="Portfolio.html#about">about</a>
+        <a href="uploads/Lindsey Nguyen Resume.docx" target="_blank" rel="noopener" class="resume-btn">resume</a>
       </nav>
-      <a href="Portfolio.html#contact" class="nav-mark" aria-label="Menu">&#10043;</a>
     </div>
   </header>
 
@@ -45,6 +63,7 @@
         <li><a href="#research" data-spy>Research</a></li>
         <li><a href="#shift" data-spy>The shift</a></li>
         <li><a href="#solution" data-spy>Solutions</a></li>
+        <li><a href="#capstone" data-spy>Capstone</a></li>
         <li><a href="#reflection" data-spy>Reflection</a></li>
         <li><a href="#see-next" data-spy>See next</a></li>
       </ol>
@@ -52,23 +71,19 @@
 
     <main>
 
-      <div class="banner" style="background:linear-gradient(152deg,#E7EAF1 0%,#DCE1EC 52%,#CFD6E6 100%);">
-        <div class="wordmark">
-          <b>DVA<span>.</span></b>
-          <em>Ask, don&rsquo;t search.</em>
-        </div>
-        <div class="laptop"><div class="lid"><div class="scr"><small>hero shot</small></div></div><div class="base"></div></div>
-        <span class="tag-img">hero image</span>
+      <div class="banner" style="background:#1a3a5c;padding:0;overflow:hidden;position:relative;">
+        <img src="uploads/device-mockup_1.5x_postspark_2026-07-01_14-52-07.png" alt="DVA hero" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        
       </div>
 
       <section id="context" class="titleblock">
-        <div>
-          <div class="award">Emerson &mdash; Internship &amp; Capstone &middot; now becoming a real product</div>
-          <h1>DVA</h1>
+        <div data-reveal>
+          <div class="award"><a href="https://www.emerson.com" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;vertical-align:middle;"><img src="uploads/pasted-1782498111945-0.png" alt="Emerson" style="height: 50px; width: 100px; display: inline-block" /></a> &mdash; Internship &amp; Capstone &middot; now becoming a real product</div>
+          <h1 style="margin: 1px">DVA</h1>
         </div>
         <div>
-          <p class="summary">An AI chatbot that turns scattered cloud-platform knowledge into fast, <em>trustworthy</em> answers.</p>
-          <div class="tags"><span>B2B</span><span>Cloud Platform</span><span>AI / Conversational UX</span></div>
+          <p class="summary" data-reveal data-delay="1">An AI chatbot that turns scattered cloud-platform knowledge into fast, <em>trustworthy</em> answers.</p>
+          <div class="tags" data-reveal data-delay="2"><span>B2B</span><span>Cloud Platform</span><span>AI / Conversational UX</span></div>
           <a href="#solution" class="skip"><span class="dot">&darr;</span><b>Skip to solution</b></a>
         </div>
       </section>
@@ -83,7 +98,7 @@
 
         <!-- CONTEXT / WHAT IS DVA -->
         <section class="sec">
-          <p class="sec-eyebrow">Context</p>
+          <p class="sec-eyebrow" data-reveal>Context</p>
           <h2>What is DVA?</h2>
           <p class="leadin">DVA is an AI-powered chatbot built for teams managing a live cloud platform. When something needs attention, users need answers fast &mdash; but the information they rely on is scattered across systems, buried in documentation, and hard to surface under pressure.</p>
           <p><strong>DVA removes that friction. Instead of searching, users ask.</strong></p>
@@ -97,10 +112,10 @@
 
         <!-- THE PROBLEM -->
         <section id="problem" class="sec">
-          <p class="sec-eyebrow">The problem</p>
-          <h2>The right information, at the wrong time, in the <em>wrong form.</em></h2>
+          <p class="sec-eyebrow" data-reveal>The problem</p>
+          <h2 data-reveal data-delay="1">The right information, at the wrong time, in the <em>wrong form.</em></h2>
           <p>Users of the platform are responsible for staying on top of live data and responding when something needs their attention. The information they need &mdash; alerts, logs, guides, compliance documentation &mdash; exists, but it&rsquo;s never in one place. In time-sensitive situations, that gap has real consequences: delays, errors, decisions made without the full picture.</p>
-          <div class="pull"><p>Why should finding the right information feel this hard?</p></div>
+          <div class="pull" data-reveal data-delay="2"><p>Why should finding the right information feel this hard?</p></div>
           <div class="numlist">
             <div class="item">
               <div class="n">01</div>
@@ -129,35 +144,38 @@
 
         <!-- RESEARCH -->
         <section id="research" class="sec">
-          <p class="sec-eyebrow">Research</p>
-          <h2>I walked in thinking the problem was speed. I walked out knowing it was <em>trust.</em></h2>
+          <p class="sec-eyebrow" data-reveal>Research</p>
+          <h2 data-reveal data-delay="1">I walked in thinking the problem was speed. I walked out knowing it was <em>trust.</em></h2>
           <p>To understand the problem from the inside, I ran group interviews with users across multiple business units &mdash; real stakeholders who work with the platform daily. Bringing groups together rather than testing one-on-one surfaced something more valuable: how these teams actually talk about the problem with each other.</p>
-          <div class="two-up">
-            <div class="imgph"><small>group interviews</small></div>
-            <div class="imgph"><small>synthesis &middot; themes</small></div>
+          <div class="two-up" data-reveal data-delay="2">
+            <figure style="margin:0;">
+              <img src="uploads/6fuabIkgpjAT3YJZzq4zbuxs0.jpg" alt="Group interview session" style="border-radius:9px;width:100%;display:block;object-fit:cover;aspect-ratio:4/3;" />
+              <figcaption style="padding:8px 4px;font-size:12px;color:var(--faint,#9A968F);">Group interview session &mdash; gathering stakeholders across business units</figcaption>
+            </figure>
+            <figure style="margin:0;">
+              <img src="uploads/7AAFWT7gevFvn4EhNrRI504.jpg" alt="DVA demo presentation" style="border-radius:9px;width:100%;display:block;object-fit:cover;aspect-ratio:4/3;" />
+              <figcaption style="padding:8px 4px;font-size:12px;color:var(--faint,#9A968F);">DVA prototype demo &mdash; presenting to the Emerson team</figcaption>
+            </figure>
           </div>
           <p><strong>What I expected to hear:</strong> users need faster access to information.<br/><strong>What I actually heard:</strong> faster access means nothing if you can&rsquo;t trust what you&rsquo;re reading.</p>
           <p>A recurring theme was documentation validity &mdash; how would users know the information DVA surfaced was accurate, current, and safe to act on? In high-stakes situations, a wrong answer isn&rsquo;t just unhelpful. It&rsquo;s dangerous. My mentor pushed me to stay in the questioning mindset longer than felt comfortable &mdash; keep asking, keep iterating, don&rsquo;t rush to the solution. That discipline kept the research honest.</p>
-          <div class="pull"><p>Users won&rsquo;t adopt a tool they don&rsquo;t trust &mdash; even if it saves them time.</p></div>
+          <div class="pull" data-reveal data-delay="3"><p>Users won&rsquo;t adopt a tool they don&rsquo;t trust &mdash; even if it saves them time.</p></div>
           <p>Validation, transparency, and source clarity had to be designed into DVA from the start, not added later. The problem wasn&rsquo;t only about speed. It was about <strong>speed and confidence.</strong></p>
         </section>
 
         <!-- THE SHIFT -->
         <section id="shift" class="sec">
-          <p class="sec-eyebrow">The shift</p>
-          <h2>From a search tool to an <em>operational layer.</em></h2>
-          <p>The original concept was straightforward &mdash; a chatbot that summarized documentation. It answered questions and surfaced information. But sitting with the research, it became clear that wasn&rsquo;t enough. Users don&rsquo;t just need information. They need to know something is wrong, know what to do about it, and have a record that they did it.</p>
-          <p>So I designed a documented chain of accountability. When a user identifies an issue through DVA, that finding is flagged, reviewed and signed off by a manager, and verified against source documentation. <strong>Nothing gets acted on without a trail.</strong> Every response links back to its original source, showing where the file came from and who documented it &mdash; solving the trust problem and giving users and managers a shared workflow instead of two separate experiences.</p>
-          <div class="imgph wide"><small>accountability flow &middot; flag &rarr; review &rarr; verify</small></div>
-          <p>The first wireframes were honest about where the thinking started: a clean chat interface answering questions with summaries. Functionally correct, practically limited. Feedback made the gap obvious &mdash; in a time-sensitive situation, a summary isn&rsquo;t actionable; an alert telling you what needs attention right now is.</p>
-          <p>That single shift moved DVA <strong>from reactive to proactive.</strong> Instead of waiting to be asked, it surfaces relevant alerts pulled directly from the platform. The interface was designed as a clean, minimal standalone desktop app &mdash; purposefully approachable in an environment that can feel dense and technical. If DVA felt like another complex system to learn, users wouldn&rsquo;t trust it. It needed to feel like talking to someone who already knew the answer.</p>
-          <div class="imgph wide"><small>early wireframes &rarr; proactive direction</small></div>
+          <p class="sec-eyebrow" data-reveal>The shift</p>
+          <h2 data-reveal data-delay="1">From a search tool to an <em>operational layer.</em></h2>
+          <p>The original concept was a chatbot that summarized documentation. But the research made it clear that wasn&rsquo;t enough. Users don&rsquo;t just need information &mdash; they need to know something is wrong, know what to do, and have a record that they did it.</p>
+          <p>So DVA became a documented chain of accountability. Findings get flagged, reviewed, and verified against source documentation. <strong>Nothing gets acted on without a trail.</strong> That single shift moved DVA <strong>from reactive to proactive</strong> &mdash; surfacing alerts instead of waiting to be asked, in an interface designed to feel approachable in an environment that can feel dense and technical.</p>
+
         </section>
 
         <!-- SOLUTIONS -->
         <section id="solution" class="sec">
-          <p class="sec-eyebrow">Solutions</p>
-          <h2>Three flows, each solving a different layer of the problem.</h2>
+          <p class="sec-eyebrow" data-reveal>Solutions</p>
+          <h2 data-reveal data-delay="1">Three flows, each solving a different layer of the problem.</h2>
           <div class="numlist">
             <div class="item">
               <div class="n">01</div>
@@ -181,17 +199,143 @@
               </div>
             </div>
           </div>
-          <div class="two-up">
-            <div class="imgph"><small>priority alert table</small></div>
-            <div class="imgph"><small>cited answer + toggle</small></div>
+          <!-- Carousel -->
+          <!-- Lightbox -->
+          <div id="dva-lightbox" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;flex-direction:column;gap:16px;">
+            <button onclick="dvaLightboxClose()" style="position:absolute;top:20px;right:24px;background:transparent;border:none;color:#fff;font-size:28px;cursor:pointer;line-height:1;">&#215;</button>
+            <img id="dva-lightbox-img" src="data:image/gif;base64,R0lGODlhAQABAAD/ACwAAAAAAQABAAACADs=" style="max-width:90vw;max-height:82vh;border-radius:6px;display:block;object-fit:contain;" />
+            <p id="dva-lightbox-cap" style="color:rgba(255,255,255,.6);font-size:12px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.04em;margin:0;"></p>
+            <button onclick="dvaLightboxNav(-1)" style="position:absolute;left:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:50%;width:44px;height:44px;color:#fff;font-size:20px;cursor:pointer;display:grid;place-items:center;">&#8592;</button>
+            <button onclick="dvaLightboxNav(1)" style="position:absolute;right:20px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:50%;width:44px;height:44px;color:#fff;font-size:20px;cursor:pointer;display:grid;place-items:center;">&#8594;</button>
           </div>
-          <div class="imgph wide"><small>document library</small></div>
+          <div id="dva-carousel" data-reveal data-delay="2" style="margin-top:28px;position:relative;border-radius:9px;overflow:hidden;background:#F4F4F2;">
+            <div id="dva-track" style="display:flex;transition:transform .45s cubic-bezier(.4,0,.2,1);">
+              <figure style="min-width:100%;margin:0;aspect-ratio:16/9;overflow:hidden;background:#F4F4F2;" data-caption="Flow 01 &mdash; System alerts sorted by priority, scannable at a glance">
+                <img src="uploads/f7E11cm9x4eQvcfblmXQPjWoCY.png" style="width:100%;height:100%;object-fit:contain;display:block;" />
+              </figure>
+              <figure style="min-width:100%;margin:0;aspect-ratio:16/9;overflow:hidden;background:#F4F4F2;" data-caption="Flow 01 &mdash; Priority alert table with expandable detail rows">
+                <img src="uploads/IFHh2ypRcVVaU9hQ2B1AXbTNDMU.png" style="width:100%;height:100%;object-fit:contain;display:block;" />
+              </figure>
+              <figure style="min-width:100%;margin:0;aspect-ratio:16/9;overflow:hidden;background:#F4F4F2;" data-caption="Flow 02 &mdash; Cited answer with Simple / Detailed toggle">
+                <img src="uploads/SV9ydjdwKfRwzRfFToe2UbK5Ndc.png" style="width:100%;height:100%;object-fit:contain;display:block;" />
+              </figure>
+              <figure style="min-width:100%;margin:0;aspect-ratio:16/9;overflow:hidden;background:#F4F4F2;" data-caption="Flow 02 &mdash; Full SOP steps, sourced and structured">
+                <img src="uploads/ape1uNsohLM6JI8yd4uTD0ie0.png" style="width:100%;height:100%;object-fit:contain;display:block;" />
+              </figure>
+              <figure style="min-width:100%;margin:0;aspect-ratio:16/9;overflow:hidden;background:#F4F4F2;" data-caption="Flow 03 &mdash; Recent Resources library with page tracking">
+                <img src="uploads/vluagwvcToaldRnvqV9T08OKXVc.png" style="width:100%;height:100%;object-fit:contain;display:block;" />
+              </figure>
+              <figure style="min-width:100%;margin:0;aspect-ratio:16/9;overflow:hidden;background:#F4F4F2;" data-caption="Flow 03 &mdash; Saved Articles organized into folders">
+                <img src="uploads/TuTCpW3q7enkUy9WkNeT5JJjc.png" style="width:100%;height:100%;object-fit:contain;display:block;" />
+              </figure>
+            </div>
+            <!-- Prev / Next -->
+            <button onclick="dvaCarousel(-1)" aria-label="Previous" style="position:absolute;left:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.88);border:1px solid #D8D4CC;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:16px;display:grid;place-items:center;z-index:2;">&#8592;</button>
+            <button onclick="dvaCarousel(1)" aria-label="Next" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);background:rgba(255,255,255,.88);border:1px solid #D8D4CC;border-radius:50%;width:36px;height:36px;cursor:pointer;font-size:16px;display:grid;place-items:center;z-index:2;">&#8594;</button>
+            <!-- Caption + Dots -->
+            <div style="padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px;background:#fff;border-top:1px solid #E7E4DE;">
+              <span id="dva-caption" style="font-size:12px;color:#6F6C66;font-family:ui-monospace,Menlo,monospace;letter-spacing:.03em;"></span>
+              <div id="dva-dots" style="display:flex;gap:6px;flex-shrink:0;"></div>
+            </div>
+          </div>
+          <script>
+            (function(){
+              var slides = document.querySelectorAll('#dva-track figure');
+              var track = document.getElementById('dva-track');
+              var caption = document.getElementById('dva-caption');
+              var dotsEl = document.getElementById('dva-dots');
+              var cur = 0, timer;
+              var dots = [];
+              slides.forEach(function(_, i){
+                var d = document.createElement('span');
+                d.style.cssText = 'width:6px;height:6px;border-radius:50%;background:#D8D4CC;display:inline-block;cursor:pointer;transition:background .2s';
+                d.addEventListener('click', function(){ go(i); resetTimer(); });
+                dotsEl.appendChild(d);
+                dots.push(d);
+              });
+              function go(n){
+                cur = (n + slides.length) % slides.length;
+                track.style.transform = 'translateX(-' + (cur * 100) + '%)';
+                caption.innerHTML = slides[cur].getAttribute('data-caption');
+                dots.forEach(function(d,i){ d.style.background = i===cur ? '#1B1A18' : '#D8D4CC'; });
+              }
+              function resetTimer(){
+                clearInterval(timer);
+                timer = setInterval(function(){ go(cur+1); }, 4000);
+              }
+              window.dvaCarousel = function(dir){ go(cur+dir); resetTimer(); };
+              // Lightbox
+              var lb = document.getElementById('dva-lightbox');
+              var lbImg = document.getElementById('dva-lightbox-img');
+              var lbCap = document.getElementById('dva-lightbox-cap');
+              slides.forEach(function(fig){
+                fig.style.cursor = 'zoom-in';
+                fig.addEventListener('click', function(){ dvaLightboxOpen(cur); });
+              });
+              window.dvaLightboxOpen = function(n){
+                cur = (n + slides.length) % slides.length;
+                lbImg.src = slides[cur].querySelector('img').src;
+                lbCap.innerHTML = slides[cur].getAttribute('data-caption');
+                lb.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+              };
+              window.dvaLightboxClose = function(){
+                lb.style.display = 'none';
+                document.body.style.overflow = '';
+              };
+              window.dvaLightboxNav = function(dir){
+                dvaLightboxOpen(cur + dir);
+              };
+              lb.addEventListener('click', function(e){ if(e.target === lb) dvaLightboxClose(); });
+              document.addEventListener('keydown', function(e){
+                if(lb.style.display==='flex'){
+                  if(e.key==='Escape') dvaLightboxClose();
+                  if(e.key==='ArrowLeft') dvaLightboxNav(-1);
+                  if(e.key==='ArrowRight') dvaLightboxNav(1);
+                }
+              });
+              window.dvaOpenImg = function(src, cap){
+                lbImg.src = src;
+                lbCap.innerHTML = cap || '';
+                lb.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+              };
+              go(0);
+              resetTimer();
+              document.getElementById('dva-carousel').addEventListener('mouseenter', function(){ clearInterval(timer); });
+              document.getElementById('dva-carousel').addEventListener('mouseleave', function(){ resetTimer(); });
+            })();
+          </script>
+          <div style="border-radius:9px;overflow:hidden;background:#000;aspect-ratio:16/9;margin-top:20px;" data-scale>
+            <video src="uploads/MOCKUP.mp4" controls autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+          </div>
+        </section>
+
+        <!-- CAPSTONE -->
+        <section id="capstone" class="sec">
+          <p class="sec-eyebrow" data-reveal>Capstone</p>
+          <h2 data-reveal data-delay="1">The same problem, turned inward.</h2>
+          <p>DVA was built for the people managing a live platform. The capstone asked a quieter but just as urgent question: what happens when the designers building that platform can&rsquo;t access the knowledge sitting right beside them?</p>
+          <p>Emerson&rsquo;s design team is small, stretched thin, and constantly interrupted by the same repeat questions &mdash; with no real way to self-serve. So I applied DVA&rsquo;s core logic internally: <strong style="font-weight:500;">instant answers from design docs, validation against existing standards, and escalation to a human designer when a question is too complex.</strong></p>
+          <p>The research surfaced a tension that felt immediately familiar. <strong>77% of contributors felt confident in their design decisions</strong> &mdash; but rarely engaged with UX day to day. Confidence without connection. People had strong instincts but no easy way to check them against the system they were designing within.</p>
+          <p><strong>51% wanted layout generation</strong>, making it the single most-requested feature. They didn&rsquo;t just want answers &mdash; they wanted a collaborator that could move with them.</p>
+          <p>Usability testing validated all three flows. <strong>Both test users said they&rsquo;d use it in their real workflow</strong> &mdash; not as a novelty, but as something that would genuinely change how they worked. That&rsquo;s the moment a concept stops being an exercise and starts being a tool.</p>
+          <div style="margin-top:28px;display:flex;flex-direction:column;gap:16px;">
+            <figure style="margin:0;">
+              <img src="uploads/Capstone Presentation .png" alt="Capstone proposal poster" style="border-radius:9px;width:100%;display:block;cursor:zoom-in;" onclick="dvaOpenImg(this.src,'Capstone proposal &mdash; A Human-Centered Design Agentic Chatbot for Enterprise Teams, UT Austin iSchool 2025')" />
+              <figcaption style="padding:10px 4px;font-size:12px;color:var(--faint,#9A968F);">Capstone proposal &mdash; A Human-Centered Design Agentic Chatbot for Enterprise Teams, UT Austin iSchool 2025</figcaption>
+            </figure>
+            <figure style="margin: 0; text-align: center">
+              <img src="uploads/final imageee.jpg" alt="Lindsey with her Emerson manager at the capstone presentation" style="border-radius: 9px; width: 500px; display: block; aspect-ratio: 1462/816; object-fit: contain; object-position: center top; height: 600px; padding: 0px; margin: 0px; border-width: 0px; border-style: solid" />
+              <figcaption style="padding:10px 4px;font-size:12px;color:var(--faint,#9A968F);">With my awesome Emerson manager, who came to the capstone showcase &mdash; UT Austin, Spring 2026</figcaption>
+            </figure>
+          </div>
         </section>
 
         <!-- REFLECTION -->
         <section id="reflection" class="sec">
-          <p class="sec-eyebrow">Reflection</p>
-          <h2>The best design decision I made was the one I didn&rsquo;t expect to make.</h2>
+          <p class="sec-eyebrow" data-reveal>Reflection</p>
+          <h2 data-reveal data-delay="1">The best design decision I made was the one I didn&rsquo;t expect to make.</h2>
           <p>DVA was my first fully solo design project, and I watched it move toward becoming a real product. That distance gives me a clearer view of what I&rsquo;d do differently. I&rsquo;d go deeper on AI-specific research from the start &mdash; how users mentally model an AI tool, what they expect it to know, where they assume it will fail, how much they&rsquo;ll trust it before they&rsquo;ve tested it. More targeted questions there would have shaped the trust solutions earlier.</p>
           <p>I&rsquo;d also ask more directly about the cognitive load of managing multiple screens and data sources at once. Users aren&rsquo;t just looking for information &mdash; they&rsquo;re already watching several things simultaneously. Designing for that divided attention, rather than assuming DVA would get their full focus, is something I&rsquo;d bring into the research from day one.</p>
           <p>What I&rsquo;m most proud of is the moment the brief changed &mdash; walking into research thinking the problem was speed, walking out knowing it was trust, and then <strong>letting that actually reshape the designs.</strong></p>
@@ -199,12 +343,12 @@
         </section>
 
         <!-- SEE NEXT -->
-        <section id="see-next" class="sec seenext">
+        <section id="see-next" class="sec seenext" data-reveal>
           <p class="sec-eyebrow">See next</p>
           <a href="figmathon.html">
-            <div class="thumb" style="background:linear-gradient(155deg,#33392C,#222720);"><div class="phones"><div class="phone"><div class="scr"></div></div><div class="phone"><div class="scr"></div></div><div class="phone"><div class="scr"></div></div></div></div>
+            <div class="thumb"><img src="uploads/device-mockup_1x_postspark_2026-07-01_14-24-28.gif" style="width:100%;height:100%;object-fit:cover;display:block;"></div>
             <div class="cap">
-              <h3>Figmathon</h3>
+              <h3>Chronoscape</h3>
               <span class="role">Product Designer</span>
             </div>
           </a>
@@ -218,9 +362,9 @@
     <div class="wrap foot-inner">
       <a href="Portfolio.html#contact" class="big">Let&rsquo;s build something good. &rarr;</a>
       <nav class="socials">
-        <a href="#">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/lindseythuytramnguyen" target="_blank" rel="noopener">LinkedIn</a>
         <a href="#">Read.cv</a>
-        <a href="#">GitHub</a>
+        <a href="uploads/Lindsey Nguyen Resume.docx" target="_blank" rel="noopener">Resume</a>
         <a href="#">Email</a>
       </nav>
     </div>
@@ -244,5 +388,56 @@
       sections.forEach(function(s){ io.observe(s); });
     })();
   </script>
+
+  <!-- Rocket back to top -->
+  <div id="rocket-wrap" style="
+    position:fixed;right:28px;bottom:36px;
+    display:flex;align-items:center;gap:10px;
+    opacity:0;pointer-events:none;
+    transition:opacity .3s ease;
+    z-index:800;
+  ">
+    <span style="
+      font-size:12px;color:#1B1A18;background:#fff;
+      border:1px solid #E7E4DE;border-radius:20px;
+      padding:6px 12px;white-space:nowrap;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+      font-family:ui-monospace,Menlo,monospace;letter-spacing:.02em;
+    ">Want to reach the top?</span>
+    <button id="rocket-btn" aria-label="Back to top" onclick="rocketLaunch()" style="
+      width:48px;height:48px;border-radius:50%;
+      background:#1B1A18;border:none;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;box-shadow:0 4px 16px rgba(0,0,0,.18);
+      transition:transform .2s ease;flex-shrink:0;
+    ">🚀</button>
+  </div>
+  <style>
+    @keyframes rocketFly {
+      0%   { transform: translateY(0) rotate(-45deg) scale(1); opacity:1; }
+      60%  { transform: translateY(-120px) rotate(-45deg) scale(1.15); opacity:1; }
+      100% { transform: translateY(-220px) rotate(-45deg) scale(0.6); opacity:0; }
+    }
+    #rocket-btn.launch { animation: rocketFly .7s cubic-bezier(.4,0,.2,1) forwards; }
+    #rocket-btn:hover  { transform: translateY(-3px) rotate(-45deg); }
+  </style>
+  <script src="assets/case-study-fx.js"></script>
+  <script>
+    (function(){
+      var btn = document.getElementById('rocket-btn');
+      var wrap = document.getElementById('rocket-wrap');
+      window.addEventListener('scroll', function(){
+        var show = window.scrollY > 300;
+        wrap.style.opacity = show ? '1' : '0';
+        wrap.style.pointerEvents = show ? 'auto' : 'none';
+      });
+      window.rocketLaunch = function(){
+        btn.classList.add('launch');
+        setTimeout(function(){ window.scrollTo({ top:0, behavior:'smooth' }); }, 300);
+        setTimeout(function(){ btn.classList.remove('launch'); btn.style.transform = ''; }, 900);
+      };
+    })();
+  </script>
+
 </body>
 </html>

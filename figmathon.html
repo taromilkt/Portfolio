@@ -3,23 +3,35 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Figmathon &mdash; Lindsey Nguyen</title>
+<title>Figbuild Competition &mdash; Chronoscape &mdash; Lindsey Nguyen</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Pinyon+Script&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="assets/case-study.css" />
+<style>
+[data-reveal]{opacity:0;transform:translateY(22px);transition:opacity .5s ease,transform .5s ease;}
+[data-reveal].revealed{opacity:1;transform:none;}
+[data-reveal][data-delay="1"]{transition-delay:.15s;}
+[data-reveal][data-delay="2"]{transition-delay:.3s;}
+[data-reveal][data-delay="3"]{transition-delay:.45s;}
+[data-reveal][data-delay="4"]{transition-delay:.6s;}
+[data-scale]{transform:scale(.95);opacity:0;transition:transform .65s cubic-bezier(.4,0,.2,1),opacity .55s ease;}
+[data-scale].revealed{transform:scale(1);opacity:1;}
+.rail ol{list-style:none;padding:0;}
+.rail ol li{position:relative;}
+#cursor-follow{position:absolute;font-size:24px;pointer-events:none;top:24px;right:24px;z-index:10;line-height:1;transition:top .08s ease,left .08s ease;will-change:top,left;filter:drop-shadow(0 2px 6px rgba(0,0,0,.25));}
+</style>
 </head>
 <body style="--accent:oklch(0.6 0.11 265);--accent-soft:oklch(0.96 0.025 265);--accent-line:oklch(0.87 0.05 265)">
 
   <header class="nav">
     <div class="wrap nav-inner">
-      <a href="Portfolio.html" class="brand" aria-label="Home">a</a>
+      <a href="Portfolio.html" class="brand" aria-label="Home">ln</a>
       <nav class="nav-links">
         <a href="Portfolio.html#work" class="active">work</a>
-        <a href="Portfolio.html#about">play</a>
         <a href="Portfolio.html#about">about</a>
+        <a href="uploads/Lindsey Nguyen Resume.docx" target="_blank" rel="noopener" class="resume-btn">resume</a>
       </nav>
-      <a href="Portfolio.html#contact" class="nav-mark" aria-label="Menu">&#10043;</a>
     </div>
   </header>
   <div class="wrap shell">
@@ -33,81 +45,111 @@
         <li><a href="#solution" data-spy>Solution</a></li>
         <li><a href="#next" data-spy>Next steps</a></li>
         <li><a href="#takeaways" data-spy>Takeaways</a></li>
-        <li><a href="#learn" data-spy>Learn more</a></li>
         <li><a href="#see-next" data-spy>See next</a></li>
       </ol>
     </aside>
     <main>
-      <div class="banner dark" style="background:linear-gradient(152deg,#23304A 0%,#1B2438 55%,#141A2A 100%);">
-        <div class="wordmark">
-          <b>Awake<span>.</span></b>
-          <em>Beating the dreamlike state behind the wheel</em>
-        </div>
-        <div class="device"><div class="scr"><small>hero shot</small></div></div>
-        <span class="tag-img">hero image</span>
+      <div class="banner dark" style="background:#1B2438;padding:0;overflow:hidden;position:relative;">
+        <img src="uploads/Copy of chronoscope.pdf.png" alt="Chronoscape app screens" style="width:100%;height:100%;object-fit:cover;display:block;" />
+        
       </div>
 
       <section id="context" class="titleblock">
-        <div>
-          <div class="award">A Figma hackathon build &mdash; app + connected device</div>
-          <h1>Figmathon</h1>
+        <div data-reveal>
+          <div class="award"><a href="https://figbuild2026.devpost.com/" target="_blank" style="color:inherit;text-decoration:none;">Figbuild &mdash; &ldquo;Extra-sensory perception&rdquo; theme &nearr;</a></div>
+          <h1>Chronoscape</h1>
         </div>
         <div>
-          <p class="summary">A phone app paired with a device that fights highway hypnosis &mdash; the dangerous dreamlike state drivers slip into.</p>
-          <div class="tags"><span>Mobile</span><span>Hardware</span><span>Safety</span></div>
-          <a href="#solution" class="skip"><span class="dot">&darr;</span><b>Skip to solution</b></a>
+          <p class="summary" data-reveal data-delay="1">A speculative app that tracks your subjective sense of time &mdash; and uses the gap between clock time and felt time to support focus, rest, and self-awareness.</p>
+          <div class="tags" data-reveal data-delay="2"><span>Mobile</span><span>Speculative</span><span>Wellness</span></div>
+          <a href="#solution" class="skip" data-reveal data-delay="3"><span class="dot">&darr;</span><b>Skip to solution</b></a>
         </div>
       </section>
 
       <div class="meta">
-        <div><span>Role</span><b>Product Designer</b></div>
-        <div><span>Duration</span><b>Figmathon hackathon</b></div>
-        <div><span>Tools</span><b>Figma, Figma Make</b></div>
+        <div data-reveal><span>Role</span><b>Product Designer</b></div>
+        <div data-reveal data-delay="1"><span>Duration</span><b>48-hour hackathon</b></div>
+        <div data-reveal data-delay="2"><span>Tools</span><b>Figma, Figma Make</b></div>
       </div>
 
       <div class="body">
-        <section class="sec">
-          <p class="sec-eyebrow">Context</p>
-          <p><em style="color:var(--faint)">[Draft &mdash; full copy coming]</em> Highway hypnosis is the <strong>dreamlike state</strong> drivers drift into on long, monotonous roads. Time we can&rsquo;t get back &mdash; and sometimes safety we can&rsquo;t either. We built a phone app paired with a device to detect that state and gently pull drivers back.</p>
+        <section id="context" class="sec">
+          <p class="sec-eyebrow" data-reveal>Context</p>
+          <p>The <a href="https://figbuild2026.devpost.com/" target="_blank" style="color:inherit;">Figbuild</a> brief challenged designers to track something <strong>intangible and previously unmeasurable</strong> about human sensory experience &mdash; and design a speculative tool to manipulate it in support of better health and self-understanding.</p>
+          <p>We chose <strong>mind-wandering</strong> &mdash; the natural human phenomenon where attention drifts from the environment toward thoughts and imagined scenarios. It&rsquo;s invisible, unmeasurable by any existing tool, and deeply tied to our sense of time. The sensory thread that connects them: <strong>chronoception</strong>, our internal sense of duration.</p>
         </section>
         <section id="began" class="sec">
-          <p class="sec-eyebrow">Where we began</p>
-          <h2>The most dangerous moments feel like nothing at all.</h2>
-          <p>Highway hypnosis is hard to notice from the inside &mdash; that&rsquo;s what makes it dangerous. We started by understanding the signals that someone has slipped into autopilot.</p>
-          <div class="imgph wide"><small>research &middot; signals of the dreamlike state</small></div>
+          <p class="sec-eyebrow" data-reveal>Where we began</p>
+          <h2 data-reveal data-delay="1">47% of waking hours &mdash; and <em>no tool to understand them.</em></h2>
+          <p>Research suggests humans spend about <strong>47% of their waking hours</strong> thinking about something other than what they&rsquo;re doing. Despite this, modern technology only tries to eliminate that distraction &mdash; not understand or work with it.</p>
+          <p>That&rsquo;s the gap. Daydreaming plays a documented role in creativity, problem-solving, emotional connection, and mental restoration. But for people with depression, ADHD, or chronic stress, mind-wandering doesn&rsquo;t go well &mdash; it becomes rumination, anxiety, repetitive negative thinking. <strong>No tool exists to help people tell the difference in real time.</strong></p>
+          <img src="uploads/Ideating (5).jpg" alt="User flows &mdash; Chronoscape research board" data-reveal data-delay="3" style="width:100%;border-radius:9px;margin-top:4px;display:block;" />
         </section>
         <section id="found" class="sec">
-          <p class="sec-eyebrow">What we found</p>
-          <h2>An alert has to wake you &mdash; without <em>startling</em> you.</h2>
-          <p>Too harsh and you swerve; too soft and it&rsquo;s ignored. The design challenge was an intervention that re-engages attention calmly and at exactly the right moment.</p>
-          <div class="pull"><p>&ldquo;Add a test or judge quote here.&rdquo;</p></div>
+          <p class="sec-eyebrow" data-reveal>What we found</p>
+          <h2 data-reveal data-delay="1">The transition itself was the <em>real problem.</em></h2>
+          <p>When your internal body state is dysregulated, your mind wanders &mdash; and your perception of time warps. This is <strong>chronoception impairment</strong>: a broken internal sense of duration. People don&rsquo;t realize how much time passes when they drift.</p>
+          <p>For people with ADHD, the movement between focused and unfocused states is completely uncontrolled and often destabilizing. There is nothing that makes that transition <strong>safe, intentional, or legible</strong>.</p>
+          <p>The gap between tasks &mdash; no dopamine, no incentive, no motivation &mdash; is a no-man&rsquo;s-land that existing tools ignore entirely. Nobody was working with the <em>internal sensory experience</em> of the transition itself: the felt disorientation, the reward withdrawal, the emotional stuck-ness.</p>
         </section>
         <section id="solution" class="sec">
-          <p class="sec-eyebrow">Solution</p>
-          <h2>Sense the drift, restore attention, gently.</h2>
-          <p>The connected device watches for the dreamlike state and the app responds with a calibrated, calm nudge that brings focus back to the road &mdash; <strong>buying back the time and attention</strong> the state quietly steals.</p>
-          <div class="two-up"><div class="imgph"><small>drift detection</small></div><div class="imgph"><small>re-engagement nudge</small></div></div>
-          <div class="imgph wide"><small>solution walkthrough</small></div>
+          <p class="sec-eyebrow" data-reveal>Solution</p>
+          <h2 data-reveal data-delay="1">What if the gap was <em>visible?</em></h2>
+          <p data-reveal data-delay="2">Chronoscape makes the transition between focused and unfocused states legible &mdash; so you can move through it intentionally and land softly on the other side.</p>
+
+          <div style="display:flex;flex-direction:column;gap:40px;margin-top:36px;">
+
+            <div data-reveal>
+              <p style="font-size:12px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px;">01</p>
+              <b style="font-size:17px;display:block;margin-bottom:8px;">Calibration</b>
+              <p style="font-size:15px;line-height:1.65;margin:0;">Chronoscape learns what you feel like when you&rsquo;re focused, resting, and drifting &mdash; so it can tell the difference. No assumptions, just your baseline.</p>
+            </div>
+
+            <div data-reveal>
+              <p style="font-size:12px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px;">02</p>
+              <b style="font-size:17px;display:block;margin-bottom:8px;">Guide to Grounding</b>
+              <p style="font-size:15px;line-height:1.65;margin:0 0 18px;">When a drift is detected, the environment gently alters sensory cues &mdash; light, sound, temperature &mdash; guiding you back without interruption or shame.</p>
+              <div style="border-radius:10px;overflow:hidden;background:#000;aspect-ratio:16/9;" data-scale>
+                <video src="uploads/guiding users to come back.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+              </div>
+            </div>
+
+            <div data-reveal>
+              <p style="font-size:12px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px;">03</p>
+              <b style="font-size:17px;display:block;margin-bottom:8px;">Post-Grounding Reflection</b>
+              <p style="font-size:15px;line-height:1.65;margin:0 0 18px;">On return, you tell Chronoscape how your body felt &mdash; not what you were thinking, just the residue. Over time this builds your personal drift vocabulary.</p>
+              <div style="border-radius:10px;overflow:hidden;background:#000;aspect-ratio:16/9;" data-scale>
+                <video src="uploads/reflection.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+              </div>
+            </div>
+
+            <div data-reveal>
+              <p style="font-size:12px;font-family:ui-monospace,Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:var(--accent);margin:0 0 6px;">04</p>
+              <b style="font-size:17px;display:block;margin-bottom:8px;">View Drift Metrics</b>
+              <p style="font-size:15px;line-height:1.65;margin:0 0 18px;">Using passive physiological signals, Chronoscape maps the depth, duration, and quality of each drift in real time &mdash; so you can see your patterns, not just feel them.</p>
+              <div style="border-radius:10px;overflow:hidden;background:#000;aspect-ratio:16/9;" data-scale>
+                <video src="uploads/results video.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video>
+              </div>
+            </div>
+
+          </div>
         </section>
         <section id="next" class="sec">
-          <p class="sec-eyebrow">Next steps</p>
-          <p><em style="color:var(--faint)">[Draft &mdash; to be written]</em> Where this could go past the hackathon.</p>
+          <p class="sec-eyebrow" data-reveal>Next steps</p>
+          <h2 data-reveal data-delay="1">From speculative to <em>real.</em></h2>
+          <p>Past the hackathon, Chronoscape could integrate passive signals &mdash; typing cadence, scroll speed, micro-pause patterns &mdash; to detect mind-wandering states without self-report. Pairing chronoception data with calendar context could surface insights automatically: <em>your constructive daydreaming peaks mid-morning; your rumination spikes after back-to-back meetings.</em></p>
         </section>
         <section id="takeaways" class="sec">
-          <p class="sec-eyebrow">Takeaways</p>
+          <p class="sec-eyebrow" data-reveal>Takeaways</p>
 
-          <div class="stats"><div><b>App + device</b><span>software meets hardware</span></div><div><b>Calm by design</b><span>wake, don&rsquo;t startle</span></div><div><b>Hackathon</b><span>built against the clock</span></div></div>
-          <p><em style="color:var(--faint)">[Draft &mdash; reflection coming]</em> Designing a safety intervention taught me how much tone and timing matter.</p>
-        </section>
-        <section id="learn" class="sec">
-          <p class="sec-eyebrow">Learn more</p>
-
-          <div class="links"><a href="#"><span>Read the full process write-up</span><span class="arr">&rarr;</span></a><a href="#"><span>View the interactive prototype</span><span class="arr">&rarr;</span></a><a href="#"><span>Figma file &amp; component library</span><span class="arr">&rarr;</span></a></div>
+          <div class="stats" data-reveal data-delay="1"><div><b>48 hours</b><span>concept to prototype</span></div><div><b>Speculative UX</b><span>design beyond constraints</span></div><div><b>Figbuild</b><span>extra-sensory theme</span></div></div>
+          <p>Chronoscape taught me how to design around <strong>something invisible</strong>. When the input itself is a feeling, every UI decision carries extra weight &mdash; the wrong friction kills honesty, the wrong visual makes the data feel foreign instead of personal.</p>
+          <p>The most important lesson: <strong>speculation doesn&rsquo;t mean fiction.</strong> The best speculative design is grounded in a real human truth &mdash; and time perception is as real as it gets.</p>
         </section>
         <section id="see-next" class="sec seenext">
           <p class="sec-eyebrow">See next</p>
           <a href="yes-chef.html">
-            <div class="thumb" style="background:linear-gradient(155deg,#E7D9C2,#CDB590);"><div class="phones"><div class="phone"><div class="scr"></div></div><div class="phone"><div class="scr"></div></div><div class="phone"><div class="scr"></div></div></div></div>
+            <div class="thumb"><video src="uploads/device-mockup_2x_postspark_2026-06-24_17-02-10.mp4" autoplay loop muted playsinline style="width:100%;height:100%;object-fit:cover;display:block;"></video></div>
             <div class="cap">
               <h3>Yes, Chef</h3>
               <span class="role">Product Designer</span>
@@ -122,31 +164,69 @@
     <div class="wrap foot-inner">
       <a href="Portfolio.html#contact" class="big">Let&rsquo;s build something good. &rarr;</a>
       <nav class="socials">
-        <a href="#">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/lindseythuytramnguyen" target="_blank" rel="noopener">LinkedIn</a>
         <a href="#">Read.cv</a>
-        <a href="#">GitHub</a>
+        <a href="uploads/Lindsey Nguyen Resume.docx" target="_blank" rel="noopener">Resume</a>
         <a href="#">Email</a>
       </nav>
     </div>
   </footer>
 
+  <script src="assets/case-study-fx.js"></script>
+
+  <!-- Rocket back to top -->
+  <div id="rocket-wrap" style="
+    position:fixed;right:28px;bottom:36px;
+    display:flex;align-items:center;gap:10px;
+    opacity:0;pointer-events:none;
+    transition:opacity .3s ease;
+    z-index:800;
+  ">
+    <span style="
+      font-size:12px;color:#1B1A18;background:#fff;
+      border:1px solid #E7E4DE;border-radius:20px;
+      padding:6px 12px;white-space:nowrap;
+      box-shadow:0 2px 8px rgba(0,0,0,.08);
+      font-family:ui-monospace,Menlo,monospace;letter-spacing:.02em;
+    ">Want to reach the top?</span>
+    <button id="rocket-btn" aria-label="Back to top" onclick="rocketLaunch()" style="
+      width:48px;height:48px;border-radius:50%;
+      background:#1B1A18;border:none;cursor:pointer;
+      display:flex;align-items:center;justify-content:center;
+      font-size:22px;box-shadow:0 4px 16px rgba(0,0,0,.18);
+      transition:transform .2s ease;flex-shrink:0;
+    ">🚀</button>
+  </div>
+  <style>
+    @keyframes rocketFly {
+      0%   { transform: translateY(0) rotate(-45deg) scale(1); opacity:1; }
+      60%  { transform: translateY(-120px) rotate(-45deg) scale(1.15); opacity:1; }
+      100% { transform: translateY(-220px) rotate(-45deg) scale(0.6); opacity:0; }
+    }
+    #rocket-btn.launch { animation: rocketFly .7s cubic-bezier(.4,0,.2,1) forwards; }
+    #rocket-btn:hover  { transform: translateY(-3px) rotate(-45deg); }
+  </style>
   <script>
     (function(){
-      var links = Array.prototype.slice.call(document.querySelectorAll('.rail a[data-spy]'));
-      var ids = links.map(function(a){ return a.getAttribute('href').slice(1); });
-      var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
-      function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#'+id); }); }
-      setActive('context');
-      if(!('IntersectionObserver' in window)) return;
-      var visible = {};
-      var io = new IntersectionObserver(function(entries){
-        entries.forEach(function(en){ visible[en.target.id] = en.isIntersecting ? en.intersectionRatio : 0; });
-        var best=null, bestR=-1;
-        ids.forEach(function(id){ var r=visible[id]||0; if(r>bestR){ bestR=r; best=id; } });
-        if(best && bestR>0) setActive(best);
-      }, { rootMargin:'-30% 0px -55% 0px', threshold:[0,.25,.5,1] });
-      sections.forEach(function(s){ io.observe(s); });
+      var btn = document.getElementById('rocket-btn');
+      var wrap = document.getElementById('rocket-wrap');
+      window.addEventListener('scroll', function(){
+        var show = window.scrollY > 300;
+        wrap.style.opacity = show ? '1' : '0';
+        wrap.style.pointerEvents = show ? 'auto' : 'none';
+      });
+      window.rocketLaunch = function(){
+        btn.classList.add('launch');
+        setTimeout(function(){
+          window.scrollTo({ top:0, behavior:'smooth' });
+        }, 300);
+        setTimeout(function(){
+          btn.classList.remove('launch');
+          btn.style.transform = '';
+        }, 900);
+      };
     })();
   </script>
+
 </body>
 </html>
