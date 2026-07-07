@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DVA &mdash; Lindsey Nguyen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/case-study.css" />
+<style>
+  /* page-scoped extras for DVA's numbered problem/solution lists + disclaimer */
+  .numlist{ display:flex; flex-direction:column; gap:26px; }
+  .numlist .item{ display:grid; grid-template-columns:auto 1fr; gap:20px; align-items:start; }
+  .numlist .n{ font-family:var(--serif); font-size:clamp(24px,2.6vw,32px); color:var(--accent);
+    line-height:.9; font-weight:500; font-style:italic; }
+  .numlist h3{ font-family:var(--sans); font-size:clamp(16px,1.4vw,19px); font-weight:600;
+    margin:0 0 9px; letter-spacing:-.005em; }
+  .numlist p{ margin:0; max-width:58ch; }
+  .disclaimer{ font-size:13px; line-height:1.6; color:var(--faint); font-style:italic;
+    border-top:1px solid var(--line); padding-top:18px; max-width:62ch; }
+</style>
+</head>
+<body style="--accent:oklch(0.52 0.08 250);--accent-soft:oklch(0.96 0.022 250);--accent-line:oklch(0.86 0.045 250)">
+
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="Portfolio.html" class="brand" aria-label="Home">a</a>
+      <nav class="nav-links">
+        <a href="Portfolio.html#work" class="active">work</a>
+        <a href="Portfolio.html#about">play</a>
+        <a href="Portfolio.html#about">about</a>
+      </nav>
+      <a href="Portfolio.html#contact" class="nav-mark" aria-label="Menu">&#10043;</a>
+    </div>
+  </header>
+
+  <div class="wrap shell">
+
+    <aside class="rail">
+      <a href="Portfolio.html#work" class="back">&larr; All work</a>
+      <ol>
+        <li><a href="#context" data-spy>Context</a></li>
+        <li><a href="#problem" data-spy>The problem</a></li>
+        <li><a href="#research" data-spy>Research</a></li>
+        <li><a href="#shift" data-spy>The shift</a></li>
+        <li><a href="#solution" data-spy>Solutions</a></li>
+        <li><a href="#reflection" data-spy>Reflection</a></li>
+        <li><a href="#see-next" data-spy>See next</a></li>
+      </ol>
+    </aside>
+
+    <main>
+
+      <div class="banner" style="background:linear-gradient(152deg,#E7EAF1 0%,#DCE1EC 52%,#CFD6E6 100%);">
+        <div class="wordmark">
+          <b>DVA<span>.</span></b>
+          <em>Ask, don&rsquo;t search.</em>
+        </div>
+        <div class="laptop"><div class="lid"><div class="scr"><small>hero shot</small></div></div><div class="base"></div></div>
+        <span class="tag-img">hero image</span>
+      </div>
+
+      <section id="context" class="titleblock">
+        <div>
+          <div class="award">Emerson &mdash; Internship &amp; Capstone &middot; now becoming a real product</div>
+          <h1>DVA</h1>
+        </div>
+        <div>
+          <p class="summary">An AI chatbot that turns scattered cloud-platform knowledge into fast, <em>trustworthy</em> answers.</p>
+          <div class="tags"><span>B2B</span><span>Cloud Platform</span><span>AI / Conversational UX</span></div>
+          <a href="#solution" class="skip"><span class="dot">&darr;</span><b>Skip to solution</b></a>
+        </div>
+      </section>
+
+      <div class="meta">
+        <div><span>Role</span><b>Sole Product Designer</b></div>
+        <div><span>Duration</span><b>Internship + Capstone</b></div>
+        <div><span>Tools</span><b>Figma</b></div>
+      </div>
+
+      <div class="body">
+
+        <!-- CONTEXT / WHAT IS DVA -->
+        <section class="sec">
+          <p class="sec-eyebrow">Context</p>
+          <h2>What is DVA?</h2>
+          <p class="leadin">DVA is an AI-powered chatbot built for teams managing a live cloud platform. When something needs attention, users need answers fast &mdash; but the information they rely on is scattered across systems, buried in documentation, and hard to surface under pressure.</p>
+          <p><strong>DVA removes that friction. Instead of searching, users ask.</strong></p>
+          <p>I was the sole designer for DVA during my internship, owning the experience end-to-end from research to handoff. Alongside it, my capstone ran as a parallel workstream &mdash; a related concept within the same product space. The two projects fed into each other throughout, sharpening the direction of both.</p>
+          <div class="stats">
+            <div><b>Leadership</b><span>presented &amp; demoed to the full team</span></div>
+            <div><b>5 users</b><span>validated the concept in research</span></div>
+            <div><b>Shipping</b><span>handed off &mdash; now becoming a real product</span></div>
+          </div>
+        </section>
+
+        <!-- THE PROBLEM -->
+        <section id="problem" class="sec">
+          <p class="sec-eyebrow">The problem</p>
+          <h2>The right information, at the wrong time, in the <em>wrong form.</em></h2>
+          <p>Users of the platform are responsible for staying on top of live data and responding when something needs their attention. The information they need &mdash; alerts, logs, guides, compliance documentation &mdash; exists, but it&rsquo;s never in one place. In time-sensitive situations, that gap has real consequences: delays, errors, decisions made without the full picture.</p>
+          <div class="pull"><p>Why should finding the right information feel this hard?</p></div>
+          <div class="numlist">
+            <div class="item">
+              <div class="n">01</div>
+              <div>
+                <h3>Information is impossible to find fast</h3>
+                <p>The platform holds everything users need &mdash; but finding the right document, alert, or log in the moment means navigating multiple systems with no clear starting point. Users weren&rsquo;t failing because the information didn&rsquo;t exist. They were failing because the path to it was too slow.</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="n">02</div>
+              <div>
+                <h3>Time-sensitive situations have no room for friction</h3>
+                <p>When something needs immediate attention, every second of searching is a second the problem is growing. The gap between &ldquo;something is wrong&rdquo; and &ldquo;I know what to do&rdquo; was too wide. Users needed to move fast, but their tools were built for browsing, not urgency.</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="n">03</div>
+              <div>
+                <h3>Documentation exists but isn&rsquo;t usable in the moment</h3>
+                <p>Guides, compliance documents, and operational references were all technically accessible &mdash; but the format wasn&rsquo;t designed for someone under pressure making a quick decision. Reading a full document to find one answer isn&rsquo;t a workflow. It&rsquo;s a barrier.</p>
+              </div>
+            </div>
+          </div>
+          <p>These three problems point to the same root cause. <strong>That became the design brief.</strong></p>
+        </section>
+
+        <!-- RESEARCH -->
+        <section id="research" class="sec">
+          <p class="sec-eyebrow">Research</p>
+          <h2>I walked in thinking the problem was speed. I walked out knowing it was <em>trust.</em></h2>
+          <p>To understand the problem from the inside, I ran group interviews with users across multiple business units &mdash; real stakeholders who work with the platform daily. Bringing groups together rather than testing one-on-one surfaced something more valuable: how these teams actually talk about the problem with each other.</p>
+          <div class="two-up">
+            <div class="imgph"><small>group interviews</small></div>
+            <div class="imgph"><small>synthesis &middot; themes</small></div>
+          </div>
+          <p><strong>What I expected to hear:</strong> users need faster access to information.<br/><strong>What I actually heard:</strong> faster access means nothing if you can&rsquo;t trust what you&rsquo;re reading.</p>
+          <p>A recurring theme was documentation validity &mdash; how would users know the information DVA surfaced was accurate, current, and safe to act on? In high-stakes situations, a wrong answer isn&rsquo;t just unhelpful. It&rsquo;s dangerous. My mentor pushed me to stay in the questioning mindset longer than felt comfortable &mdash; keep asking, keep iterating, don&rsquo;t rush to the solution. That discipline kept the research honest.</p>
+          <div class="pull"><p>Users won&rsquo;t adopt a tool they don&rsquo;t trust &mdash; even if it saves them time.</p></div>
+          <p>Validation, transparency, and source clarity had to be designed into DVA from the start, not added later. The problem wasn&rsquo;t only about speed. It was about <strong>speed and confidence.</strong></p>
+        </section>
+
+        <!-- THE SHIFT -->
+        <section id="shift" class="sec">
+          <p class="sec-eyebrow">The shift</p>
+          <h2>From a search tool to an <em>operational layer.</em></h2>
+          <p>The original concept was straightforward &mdash; a chatbot that summarized documentation. It answered questions and surfaced information. But sitting with the research, it became clear that wasn&rsquo;t enough. Users don&rsquo;t just need information. They need to know something is wrong, know what to do about it, and have a record that they did it.</p>
+          <p>So I designed a documented chain of accountability. When a user identifies an issue through DVA, that finding is flagged, reviewed and signed off by a manager, and verified against source documentation. <strong>Nothing gets acted on without a trail.</strong> Every response links back to its original source, showing where the file came from and who documented it &mdash; solving the trust problem and giving users and managers a shared workflow instead of two separate experiences.</p>
+          <div class="imgph wide"><small>accountability flow &middot; flag &rarr; review &rarr; verify</small></div>
+          <p>The first wireframes were honest about where the thinking started: a clean chat interface answering questions with summaries. Functionally correct, practically limited. Feedback made the gap obvious &mdash; in a time-sensitive situation, a summary isn&rsquo;t actionable; an alert telling you what needs attention right now is.</p>
+          <p>That single shift moved DVA <strong>from reactive to proactive.</strong> Instead of waiting to be asked, it surfaces relevant alerts pulled directly from the platform. The interface was designed as a clean, minimal standalone desktop app &mdash; purposefully approachable in an environment that can feel dense and technical. If DVA felt like another complex system to learn, users wouldn&rsquo;t trust it. It needed to feel like talking to someone who already knew the answer.</p>
+          <div class="imgph wide"><small>early wireframes &rarr; proactive direction</small></div>
+        </section>
+
+        <!-- SOLUTIONS -->
+        <section id="solution" class="sec">
+          <p class="sec-eyebrow">Solutions</p>
+          <h2>Three flows, each solving a different layer of the problem.</h2>
+          <div class="numlist">
+            <div class="item">
+              <div class="n">01</div>
+              <div>
+                <h3>Alerts that come to you</h3>
+                <p>The first flow flipped the dynamic. Instead of users searching for what&rsquo;s wrong, DVA surfaces it &mdash; pulling and sorting live system alerts by priority into a structured, scannable table with status indicators and expandable detail rows. The information stopped being buried; it became the first thing you see.</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="n">02</div>
+              <div>
+                <h3>From summaries to cited answers</h3>
+                <p>The second flow addressed trust directly. A user asks; DVA responds with a clear, structured answer &mdash; but every step is cited back to its source document and author. A Simple / Detailed toggle gives users control: a quick answer when time is short, full documentation when confidence matters.</p>
+              </div>
+            </div>
+            <div class="item">
+              <div class="n">03</div>
+              <div>
+                <h3>A library you can actually return to</h3>
+                <p>The third flow solved a problem users immediately recognized &mdash; finding something once doesn&rsquo;t mean you can find it again. DVA includes a document library to bookmark responses, organize them into folders, and return to past findings. Recent resources, saved articles, and chat history all live in one place, accessible from the sidebar.</p>
+              </div>
+            </div>
+          </div>
+          <div class="two-up">
+            <div class="imgph"><small>priority alert table</small></div>
+            <div class="imgph"><small>cited answer + toggle</small></div>
+          </div>
+          <div class="imgph wide"><small>document library</small></div>
+        </section>
+
+        <!-- REFLECTION -->
+        <section id="reflection" class="sec">
+          <p class="sec-eyebrow">Reflection</p>
+          <h2>The best design decision I made was the one I didn&rsquo;t expect to make.</h2>
+          <p>DVA was my first fully solo design project, and I watched it move toward becoming a real product. That distance gives me a clearer view of what I&rsquo;d do differently. I&rsquo;d go deeper on AI-specific research from the start &mdash; how users mentally model an AI tool, what they expect it to know, where they assume it will fail, how much they&rsquo;ll trust it before they&rsquo;ve tested it. More targeted questions there would have shaped the trust solutions earlier.</p>
+          <p>I&rsquo;d also ask more directly about the cognitive load of managing multiple screens and data sources at once. Users aren&rsquo;t just looking for information &mdash; they&rsquo;re already watching several things simultaneously. Designing for that divided attention, rather than assuming DVA would get their full focus, is something I&rsquo;d bring into the research from day one.</p>
+          <p>What I&rsquo;m most proud of is the moment the brief changed &mdash; walking into research thinking the problem was speed, walking out knowing it was trust, and then <strong>letting that actually reshape the designs.</strong></p>
+          <p class="disclaimer">This case study has been modified from its original form and is presented as a conceptual illustration for portfolio purposes.</p>
+        </section>
+
+        <!-- SEE NEXT -->
+        <section id="see-next" class="sec seenext">
+          <p class="sec-eyebrow">See next</p>
+          <a href="figmathon.html">
+            <div class="thumb" style="background:linear-gradient(155deg,#33392C,#222720);"><div class="phones"><div class="phone"><div class="scr"></div></div><div class="phone"><div class="scr"></div></div><div class="phone"><div class="scr"></div></div></div></div>
+            <div class="cap">
+              <h3>Figmathon</h3>
+              <span class="role">Product Designer</span>
+            </div>
+          </a>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <footer class="foot">
+    <div class="wrap foot-inner">
+      <a href="Portfolio.html#contact" class="big">Let&rsquo;s build something good. &rarr;</a>
+      <nav class="socials">
+        <a href="#">LinkedIn</a>
+        <a href="#">Read.cv</a>
+        <a href="#">GitHub</a>
+        <a href="#">Email</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    (function(){
+      var links = Array.prototype.slice.call(document.querySelectorAll('.rail a[data-spy]'));
+      var ids = links.map(function(a){ return a.getAttribute('href').slice(1); });
+      var sections = ids.map(function(id){ return document.getElementById(id); }).filter(Boolean);
+      function setActive(id){ links.forEach(function(a){ a.classList.toggle('active', a.getAttribute('href') === '#'+id); }); }
+      setActive('context');
+      if(!('IntersectionObserver' in window)) return;
+      var visible = {};
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(en){ visible[en.target.id] = en.isIntersecting ? en.intersectionRatio : 0; });
+        var best=null, bestR=-1;
+        ids.forEach(function(id){ var r=visible[id]||0; if(r>bestR){ bestR=r; best=id; } });
+        if(best && bestR>0) setActive(best);
+      }, { rootMargin:'-30% 0px -55% 0px', threshold:[0,.25,.5,1] });
+      sections.forEach(function(s){ io.observe(s); });
+    })();
+  </script>
+</body>
+</html>

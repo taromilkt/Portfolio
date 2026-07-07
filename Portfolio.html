@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<!--
+  DESIGN REASONING / ASSUMPTIONS
+  ------------------------------------------------------------------
+  Goal: match the look & feel of the reference portfolio (example.JPG)
+  while following the section order from the wireframe (Frame 2.png):
+  nav → hero → work grid → about → contact footer. Static for now.
+
+  System:
+  • Type    — Newsreader (transitional serif) reserved ONLY for the hero
+              display line + section/contact headlines, with an expressive
+              italic accent word. Everything else (nav, body, project
+              titles, labels) is a clean neutral grotesque (Helvetica
+              Neue / system). That serif↔sans contrast is the whole look.
+  • Canvas  — subtly warm near-white (#FBFBFA), near-black ink (#1B1A18).
+  • Color   — the page itself is monochrome & calm; ALL color comes from
+              the project cards (tan / soft grey / deep green / electric
+              blue), giving the grid its visual rhythm.
+  • Imagery — project screenshots + portrait are intentional placeholders
+              (hairline-striped fills + monospace captions) for you to
+              swap real assets into. The big framed box in the hero is the
+              static stand-in for the interactive preview coming later.
+  ------------------------------------------------------------------
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#FBFBFA;
+    --ink:#1B1A18;
+    --muted:#6F6C66;
+    --faint:#9A968F;
+    --line:#E7E4DE;
+    --line-strong:#D8D4CC;
+
+    --card-tan:#C3A88C;
+    --card-grey:#E9E7E2;
+    --card-green:#2B2F26;
+    --card-blue:#1C8CFF;
+
+    --serif:"Newsreader", Georgia, "Times New Roman", serif;
+    --sans:"Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+
+    --maxw:1180px;
+    --pad:clamp(20px, 5vw, 56px);
+  }
+
+  *{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:var(--sans);
+    -webkit-font-smoothing:antialiased;
+    text-rendering:optimizeLegibility;
+    line-height:1.5;
+  }
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{ max-width:var(--maxw); margin:0 auto; padding-inline:var(--pad); }
+
+  /* ---------------- NAV ---------------- */
+  .nav{
+    position:sticky; top:0; z-index:50;
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter:saturate(140%) blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    height:60px;
+  }
+  .brand{
+    display:inline-flex; align-items:center; justify-content:center;
+    width:34px; height:34px;
+    font-family:var(--serif); font-size:21px; font-weight:500;
+    font-style:italic;
+    border:1px solid var(--line-strong); border-radius:7px;
+  }
+  .nav-links{
+    display:flex; align-items:center; gap:clamp(22px, 4vw, 46px);
+    font-size:15px; color:var(--muted);
+  }
+  .nav-links a{ position:relative; padding:4px 0; transition:color .18s ease; }
+  .nav-links a:hover{ color:var(--ink); }
+  .nav-links a.active{ color:var(--ink); }
+  .nav-links a.active::before{
+    content:"■"; font-size:8px; margin-right:7px; vertical-align:middle;
+    color:var(--ink);
+  }
+  .nav-mark{
+    font-size:18px; color:var(--ink); line-height:1;
+    transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .nav-mark:hover{ transform:rotate(90deg); }
+
+  /* ---------------- HERO ---------------- */
+  .hero{ padding-top:clamp(56px, 11vh, 120px); padding-bottom:clamp(48px, 8vh, 88px); }
+  .hero-grid{
+    display:grid; grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+    gap:clamp(28px, 5vw, 64px); align-items:start;
+  }
+  .hero h1{
+    font-family:var(--serif); font-weight:400;
+    font-size:clamp(38px, 5.6vw, 66px);
+    line-height:1.04; letter-spacing:-.012em;
+    margin:0 0 26px; text-wrap:balance;
+  }
+  .hero h1 em{ font-style:italic; font-weight:500; }
+  .hero-sub{
+    font-size:clamp(15px,1.15vw,17px); line-height:1.6;
+    color:var(--muted); max-width:46ch; margin:0;
+  }
+  .hero-sub strong{ color:var(--ink); font-weight:500; }
+  .chip{
+    display:inline-flex; align-items:center; gap:6px;
+    vertical-align:baseline;
+  }
+  .chip i{
+    width:17px; height:17px; border-radius:5px; display:inline-block;
+    transform:translateY(3px);
+    background:var(--c,#ccc);
+    box-shadow:inset 0 0 0 1px rgba(0,0,0,.06);
+  }
+
+  /* interactive-preview placeholder (static for now) */
+  .preview{
+    border:1px solid var(--line-strong); border-radius:6px;
+    aspect-ratio:16/10.5; min-height:230px;
+    position:relative; overflow:hidden;
+    background:
+      repeating-linear-gradient(45deg, rgba(27,26,24,.022) 0 9px, transparent 9px 18px);
+  }
+  .preview .meta{
+    position:absolute; left:16px; top:14px;
+    font-family:ui-monospace, "SFMono-Regular", Menlo, monospace;
+    font-size:11px; letter-spacing:.04em; color:var(--faint);
+  }
+  .preview .hintmid{
+    position:absolute; inset:0; display:grid; place-items:center;
+    text-align:center; padding:24px;
+  }
+  .preview .hintmid span{
+    font-family:ui-monospace, Menlo, monospace; font-size:11.5px;
+    letter-spacing:.06em; color:var(--faint); line-height:1.7;
+    text-transform:uppercase;
+  }
+  .preview .corner{
+    position:absolute; right:14px; bottom:12px;
+    font-family:var(--serif); font-style:italic; font-size:13px;
+    color:var(--faint);
+  }
+
+  /* ---------------- SECTION LABEL ---------------- */
+  .sec-head{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:16px; padding-bottom:22px; margin-bottom:30px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    font-size:11px; letter-spacing:.16em; text-transform:uppercase;
+    color:var(--faint); font-weight:500;
+  }
+  .sec-note{ font-size:13px; color:var(--muted); }
+
+  /* ---------------- WORK GRID ---------------- */
+  .work{ padding-block:clamp(28px,5vh,40px) clamp(60px,9vh,96px); }
+  .grid{
+    display:grid; grid-template-columns:repeat(2,minmax(0,1fr));
+    gap:clamp(28px, 3.4vw, 48px) clamp(24px, 3vw, 40px);
+  }
+  .card{ display:block; }
+  .card .thumb{
+    position:relative; border-radius:7px; overflow:hidden;
+    aspect-ratio:1.62/1;
+    display:grid; place-items:center;
+    transition:transform .45s cubic-bezier(.2,.8,.2,1), box-shadow .45s ease;
+  }
+  .card:hover .thumb{ transform:translateY(-4px); box-shadow:0 22px 40px -26px rgba(27,26,24,.45); }
+  .card .badge{
+    position:absolute; left:12px; top:12px; z-index:3;
+    display:inline-flex; align-items:center; gap:7px;
+    background:rgba(255,255,255,.82); backdrop-filter:blur(4px);
+    border:1px solid rgba(0,0,0,.05);
+    padding:5px 10px; border-radius:20px;
+    font-size:11px; color:#3a382f; letter-spacing:.01em;
+  }
+  .card .badge b{ font-weight:600; }
+  .card .cap{
+    display:flex; align-items:baseline; justify-content:space-between;
+    gap:14px; margin-top:15px; padding-bottom:2px;
+  }
+  .card .cap h3{
+    font-family:var(--sans); font-size:clamp(15px,1.3vw,18px);
+    font-weight:500; margin:0; letter-spacing:-.005em;
+  }
+  .card .cap .role{
+    font-size:11px; letter-spacing:.12em; text-transform:uppercase;
+    color:var(--faint); white-space:nowrap; flex-shrink:0;
+  }
+
+  /* card colour skins */
+  .skin-tan{ background:var(--card-tan); }
+  .skin-grey{ background:linear-gradient(155deg,#F1EFEA,#DCDAD3 120%); }
+  .skin-green{ background:var(--card-green); }
+  .skin-blue{ background:var(--card-blue); }
+
+  /* device placeholders (simple shapes + hairline-stripe screens) */
+  .laptop{ width:72%; }
+  .laptop .lid{
+    border:6px solid #1f2430; border-radius:12px 12px 0 0; border-bottom:none;
+    aspect-ratio:16/10; overflow:hidden; background:#fff;
+  }
+  .laptop .base{
+    height:9px; background:linear-gradient(#cfd3da,#a9aeb8);
+    border-radius:0 0 9px 9px; margin:0 -7%;
+    box-shadow:inset 0 2px 2px rgba(255,255,255,.5);
+  }
+  .phone{
+    width:31%; aspect-ratio:1/2.04; min-width:74px;
+    border:5px solid #14161b; border-radius:22px; overflow:hidden;
+    background:#fff; position:relative;
+  }
+  .phone::before{
+    content:""; position:absolute; top:6px; left:50%; transform:translateX(-50%);
+    width:34%; height:7px; border-radius:8px; background:#14161b; z-index:2;
+  }
+  .phones{ display:flex; gap:11px; align-items:center; justify-content:center; width:100%; }
+  .phones .phone:nth-child(2){ transform:translateY(-14px) scale(1.04); }
+  .screen-ph{
+    width:100%; height:100%;
+    background:
+      repeating-linear-gradient(45deg, rgba(0,0,0,.05) 0 7px, transparent 7px 14px),
+      #f4f3f0;
+    display:grid; place-items:center;
+  }
+  .screen-ph.dark{
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,.07) 0 7px, transparent 7px 14px),
+      #1f241d;
+  }
+  .screen-ph.blue{
+    background:
+      repeating-linear-gradient(45deg, rgba(255,255,255,.16) 0 7px, transparent 7px 14px),
+      #1c8cff;
+  }
+  .screen-ph small{
+    font-family:ui-monospace, Menlo, monospace; font-size:9px;
+    letter-spacing:.06em; color:rgba(0,0,0,.32); text-transform:uppercase;
+  }
+  .screen-ph.dark small,.screen-ph.blue small{ color:rgba(255,255,255,.55); }
+
+  /* ---------------- ABOUT ---------------- */
+  .about{ padding-block:clamp(56px,9vh,96px); border-top:1px solid var(--line); }
+  .about-grid{
+    display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr);
+    gap:clamp(32px,6vw,80px); align-items:center;
+  }
+  .about h2{
+    font-family:var(--serif); font-weight:400;
+    font-size:clamp(26px,3vw,38px); line-height:1.18; letter-spacing:-.01em;
+    margin:0 0 30px; text-wrap:balance;
+  }
+  .about h2 em{ font-style:italic; }
+  .about p{
+    font-size:clamp(14.5px,1.05vw,16px); line-height:1.72; color:var(--muted);
+    margin:0 0 16px; max-width:54ch;
+  }
+  .about p strong{ color:var(--ink); font-weight:500; }
+  .portrait{
+    aspect-ratio:4/5; border-radius:8px; overflow:hidden;
+    border:1px solid var(--line);
+    background:
+      repeating-linear-gradient(45deg, rgba(27,26,24,.04) 0 10px, transparent 10px 20px),
+      #EFEDE8;
+    display:grid; place-items:center;
+  }
+  .portrait small{
+    font-family:ui-monospace, Menlo, monospace; font-size:11px;
+    letter-spacing:.06em; color:var(--faint); text-transform:uppercase;
+  }
+
+  /* ---------------- FOOTER / CONTACT ---------------- */
+  .contact{
+    background:var(--ink); color:#F4F2ED;
+    padding-block:clamp(64px,10vh,110px);
+    margin-top:clamp(20px,4vh,40px);
+  }
+  .contact .eyebrow{ color:rgba(244,242,237,.5); }
+  .contact h2{
+    font-family:var(--serif); font-weight:400;
+    font-size:clamp(34px,6vw,76px); line-height:1.0; letter-spacing:-.015em;
+    margin:18px 0 0; text-wrap:balance;
+  }
+  .contact h2 em{ font-style:italic; font-weight:500; }
+  .contact .mail{
+    display:inline-block; margin-top:30px;
+    font-family:var(--serif); font-style:italic;
+    font-size:clamp(20px,2.4vw,30px);
+    border-bottom:1px solid rgba(244,242,237,.35); padding-bottom:3px;
+    transition:border-color .2s ease, opacity .2s ease;
+  }
+  .contact .mail:hover{ border-color:#F4F2ED; }
+  .contact-foot{
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:18px;
+    margin-top:clamp(48px,7vh,80px);
+    padding-top:24px; border-top:1px solid rgba(244,242,237,.14);
+    font-size:13px; color:rgba(244,242,237,.55);
+  }
+  .socials{ display:flex; gap:24px; }
+  .socials a{ transition:color .18s ease; }
+  .socials a:hover{ color:#F4F2ED; }
+
+  /* ---------------- responsive ---------------- */
+  @media (max-width:880px){
+    .hero-grid{ grid-template-columns:1fr; gap:34px; }
+    .preview{ aspect-ratio:16/9; }
+    .about-grid{ grid-template-columns:1fr; gap:34px; }
+    .portrait{ max-width:300px; }
+  }
+  @media (max-width:680px){
+    .grid{ grid-template-columns:1fr; gap:34px; }
+    .nav-links{ gap:20px; font-size:14px; }
+    .card .cap{ flex-wrap:wrap; gap:4px; }
+  }
+  @media (max-width:480px){
+    .nav-links a.play{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="nav">
+    <div class="wrap nav-inner">
+      <a href="#top" class="brand" aria-label="Home">a</a>
+      <nav class="nav-links">
+        <a href="#work" class="active">work</a>
+        <a href="#play" class="play">play</a>
+        <a href="#about">about</a>
+      </nav>
+      <a href="#contact" class="nav-mark" aria-label="Menu">&#10043;</a>
+    </div>
+  </header>
+
+  <main id="top">
+
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="reveal">
+          <h1>I&rsquo;m <span data-name>Lindsey</span>, a product designer who <em>designs with&nbsp;AI.</em></h1>
+          <p class="hero-sub">
+            Howdy &mdash; a UX designer based in Texas, previously shaping real products at
+            <span class="chip"><i style="--c:#0a7d6b"></i><strong>Emerson</strong></span>.
+            Master&rsquo;s student in Information Studies at UT Austin, exploring how AI reshapes the way we design.
+          </p>
+        </div>
+
+        <!-- static stand-in for the interactive preview coming later -->
+        <div class="preview reveal" aria-label="Interactive preview placeholder">
+          <span class="meta">preview&nbsp;/&nbsp;01</span>
+          <div class="hintmid"><span>interactive preview<br/>&mdash; coming soon &mdash;</span></div>
+          <span class="corner">hover to explore</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WORK ============ -->
+    <section class="work" id="work">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="eyebrow">Selected Work</span>
+          <span class="sec-note">2023 &mdash; 2026</span>
+        </div>
+
+        <div class="grid">
+
+          <!-- card 1 -->
+          <a href="yes-chef.html" class="card reveal">
+            <div class="thumb skin-tan">
+              <div class="phones">
+                <div class="phone"><div class="screen-ph"></div></div>
+                <div class="phone"><div class="screen-ph"><small>screenshot</small></div></div>
+                <div class="phone"><div class="screen-ph"></div></div>
+              </div>
+            </div>
+            <div class="cap">
+              <h3>Yes, Chef</h3>
+              <span class="role">Product Designer</span>
+            </div>
+          </a>
+
+          <!-- card 2 -->
+          <a href="nexus.html" class="card reveal">
+            <div class="thumb skin-blue">
+              <div class="badge"><b>&#9733; 1st Place</b> &middot; Visual Design</div>
+              <div class="laptop">
+                <div class="lid"><div class="screen-ph blue"><small>screenshot</small></div></div>
+                <div class="base"></div>
+              </div>
+            </div>
+            <div class="cap">
+              <h3>Nexus</h3>
+              <span class="role">Product Designer</span>
+            </div>
+          </a>
+
+          <!-- card 3 -->
+          <a href="emerson.html" class="card reveal">
+            <div class="thumb skin-grey">
+              <div class="laptop">
+                <div class="lid"><div class="screen-ph"><small>screenshot</small></div></div>
+                <div class="base"></div>
+              </div>
+            </div>
+            <div class="cap">
+              <h3>DVA</h3>
+              <span class="role">Product Design Intern</span>
+            </div>
+          </a>
+
+          <!-- card 4 -->
+          <a href="figmathon.html" class="card reveal">
+            <div class="thumb skin-green">
+              <div class="phones">
+                <div class="phone"><div class="screen-ph dark"></div></div>
+                <div class="phone"><div class="screen-ph dark"><small>screenshot</small></div></div>
+                <div class="phone"><div class="screen-ph dark"></div></div>
+              </div>
+            </div>
+            <div class="cap">
+              <h3>Figmathon</h3>
+              <span class="role">Product Designer</span>
+            </div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ABOUT ============ -->
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+        <div class="reveal">
+          <span class="eyebrow">About</span>
+          <h2>I design calm, human interfaces &mdash; and I&rsquo;m learning to design them <em>with AI.</em></h2>
+          <p>
+            I&rsquo;m a UX designer based in Texas and a master&rsquo;s student in Information Studies at
+            UT Austin. I care about <strong>research-backed decisions</strong>, clarity, and products
+            that feel considered rather than clever.
+          </p>
+          <p>
+            Previously I helped shape real products at <strong>Emerson</strong>. Lately I&rsquo;m exploring
+            how AI changes the design process &mdash; treating it as a material and a collaborator,
+            not just a feature to ship.
+          </p>
+        </div>
+        <div class="portrait reveal"><small>portrait</small></div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ CONTACT FOOTER ============ -->
+  <footer class="contact" id="contact">
+    <div class="wrap">
+      <span class="eyebrow">Get in touch</span>
+      <h2>Let&rsquo;s build <em>something good.</em></h2>
+      <a class="mail" href="mailto:hello@example.com">hello@example.com</a>
+      <div class="contact-foot">
+        <span>&copy; 2026 <span data-name>Lindsey Nguyen</span>. Designed with care &amp; a little AI.</span>
+        <nav class="socials">
+          <a href="#">LinkedIn</a>
+          <a href="#">Read.cv</a>
+          <a href="#">GitHub</a>
+          <a href="#">Email</a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
