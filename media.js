@@ -16,7 +16,7 @@ var MEDIA = {
 
   // ── About board photos ───────────────────────────────────────────────
   japan:       'assets/6.jpg',
-  boardgame:   'assets/pic6293412.webp',
+  boardgame:   'assets/ark nova.webp',
   movie:       'assets/c297506fa1bce64f87e03814972b306a.jpg',
   dog:         'assets/taro.jpg',
   pickleball:  'assets/8aa9f646c7f2b928379a2d6068abc74f.jpg',
