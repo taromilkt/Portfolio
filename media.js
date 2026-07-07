@@ -4,7 +4,7 @@
 var MEDIA = {
   // ── Work card videos / GIF ──────────────────────────────────────────
   yesChef:     'assets/device-mockup_2x_postspark_2026-06-24_17-02-10.mp4',
-  nexus:       'assets/MOCKUP.mp4',
+  nexus:       'assets/nexus-showcase.mp4',
   dva:         'assets/emerson case study.mp4',
   chronoscape: 'assets/device-mockup_1x_postspark_2026-07-01_14-24-28.gif',
 
